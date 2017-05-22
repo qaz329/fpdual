@@ -46,7 +46,6 @@ public class Main {
 		System.out.println("2 - Manteniment d'alumnes");
 		System.out.println("3 - Manteniment de tutors");
 		System.out.println("4 - Manteniment d'activitats");
-		sdadadasdadadadadadasd
 
 				
 		in.close();

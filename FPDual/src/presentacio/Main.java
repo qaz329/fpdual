@@ -37,7 +37,7 @@ public class Main {
 					System.out.println("No hi ha el NIF");
 				}
 			}else{
-				System.out.println("NIF no v√†lid");
+				System.out.println("NIF no v‡lid");
 				correcte=0;
 			}			
 		}while(correcte==0 || correcte==1);

@@ -247,6 +247,7 @@ public class MantenimentCentres {
 			if (i == 0) {
 				System.out.println("El nom no es troba a la BDD.");
 				correcte = false;
+				// s
 			} else {
 				correcte = true;
 				System.out.println("Les dades entrades son: ");

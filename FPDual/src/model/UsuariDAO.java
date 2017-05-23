@@ -21,6 +21,7 @@ public class UsuariDAO {
 			String consultaSQL = "SELECT * FROM usuari WHERE NIF='"+nif+"' AND password='"+pw+"'";
 			rs = gestorDB.consultaRegistres(consultaSQL);
 			
+			
 			if(rs.first()){
 				return true;
 			}else{
@@ -30,6 +31,12 @@ public class UsuariDAO {
 			e.printStackTrace();
 			return false;
 		}
+	}
+	
+	public void altaUsuari(String nif, String pw, String nom, String c1, String c2, String mail){
+		String consultaSQL="INSERT INTO Usuari VALUES(id_usuari,'"+nif+"','"+pw+"','"+nom+"','"+c1+"','"+c2+"',NOW(),'"+mail+"')";
+		gestorDB.modificarRegistre(consultaSQL);
+		
 	}
 	
 	public Object[] consultaNifs(String nif){

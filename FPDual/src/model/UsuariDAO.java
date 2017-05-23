@@ -33,12 +33,9 @@ public class UsuariDAO {
 	}
 	
 	public void altaUsuari(String nif, String pw, String nom, String c1, String c2, String mail){
-		String consultaSQL="INSERT INTO Usuari VALUES(Id_usuari,'"+nif+"','"+pw+"','"+nom+"','"+c1+"','"+c2+"','"+u.getData_alta()+"','"+u.getMail()+"');";
-		try {
-			gestorDB.modificarRegistre(consultaSQL);
-		} catch (SQLException e) {
-			System.out.println("Error insert usuari "+e.toString());
-		}
+		String consultaSQL="INSERT INTO Usuari VALUES(Id_usuari,'"+nif+"','"+pw+"','"+nom+"','"+c1+"','"+c2+"',NOW(),'"+mail+"')";
+		gestorDB.modificarRegistre(consultaSQL);
+		
 	}
 	
 	public Object[] consultaNifs(String nif){

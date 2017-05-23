@@ -32,6 +32,17 @@ public class UsuariDAO {
 		}
 	}
 	
+	public void altaUsuari(Usuari u){
+		String consultaSQL="INSERT INTO Usuari VALUES(Id_usuari,'"+u.getNIF()+"','"+u.getPasswd()+"','"
+															+u.getNom()+"','"+u.getPrimer_cognom()+"','"
+															+u.getSegon_cognom()+"','"+u.getData_alta()+"','"+u.getMail()+"');";
+		try {
+			gestorDB.modificarRegistre(consultaSQL);
+		} catch (SQLException e) {
+			System.out.println("Error insert usuari "+e.toString());
+		}
+	}
+	
 	public Object[] consultaNifs(String nif){
 		ResultSet rs = null;
 		String consultaSQL = "SELECT NIF FROM usuari";

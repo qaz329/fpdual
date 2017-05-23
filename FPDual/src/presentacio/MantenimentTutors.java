@@ -10,6 +10,7 @@ import controlador.GestorDB;
 public class MantenimentTutors {
 	GestorDB GDB = new GestorDB(Constants.SERVER, Constants.PORT, Constants.BD);
 	boolean opcio=false;
+	String consultaSQL;
 	InputStreamReader isr=new InputStreamReader(System.in);
 	BufferedReader br=new BufferedReader(isr);
 	
@@ -100,6 +101,8 @@ public class MantenimentTutors {
 			}while(!correcte);
 			System.out.print("Introdueix el mail de l'usuari: ");
 			mail=br.readLine();
+			
+			consultaSQL="INSERT INTO usuari VALUES(Id_usuari,'"+nif+"','"+pass+"','"+nom+"','"+pCog+"','"+sCog+"','"+data+"','"+mail+"');";
 			
 	} catch (IOException e) {
 		System.out.println("Error Alta"+e.toString());

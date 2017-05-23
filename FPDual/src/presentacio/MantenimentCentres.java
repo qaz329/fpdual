@@ -207,7 +207,7 @@ public class MantenimentCentres {
 		sentenciaSQL = "SELECT * FROM centre";
 		ResultSet rs = GDB.consultaRegistres(sentenciaSQL);
 		try {
-			System.out.println("id \t\tNom \t\tCodi \t\tTelefon \t\tWeb");
+			System.out.println("id \t\tCodi \t\tNom \t\tTelefon \t\tWeb");
 			while (rs.next()) {
 				for (int i = 1; i <= 5; i++) {
 					if (i > 1)

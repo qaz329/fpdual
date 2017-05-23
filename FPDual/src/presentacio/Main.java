@@ -1,15 +1,18 @@
 package presentacio;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import model.UsuariDAO;
 
 public class Main {
+	static Scanner in = new Scanner(System.in);
 
 	public static void main(String[] args) {
 		UsuariDAO uDAO = new UsuariDAO();
-		Scanner in = new Scanner(System.in);
 		String nif="", pw="";
 		int correcte = 0;
 		do{
@@ -41,17 +44,63 @@ public class Main {
 				correcte=0;
 			}			
 		}while(correcte==0 || correcte==1);
+		
+		
+		opcionsCase();
+
+	}
+		
+		private static void opcionsCase() {
+			boolean correcte2 = true;
+			MantenimentCentres MC = new MantenimentCentres();
+
+			int opcio = 0;
+
+			System.out.println("1.- Manteniment de Centres.'Sisco'");
+			System.out.println("2.- Manteniment de Alumnes.'Joan'");
+			System.out.println("3.- Manteniment de Tutors.'Sergi'");
+			System.out.println("4.- Manteniment de Activitats.'Thiago'");
+			System.out.println("5.- Tancar Aplicacio");
+			do {
+				opcio = in.nextInt();
+				
+				switch (opcio) {
+				case 1:
+					System.out.println("Opcio 1 triada");
+					MC.FormulariCentres();
+					break;
+				case 2:
+					System.out.println("Opcio 2 triada");
+					break;
+				case 3:
+					System.out.println("Opcio 3 triada");
+					break;
+				case 4:
+					System.out.println("Opcio 4 triada");
+					break;
+
+				case 5:
+					System.out.println("Opcio 5 triada. Tancant Aplicacio...");
+					correcte2 = true;
+					break;
+
+				default:
+					System.out.println("Tens que triar una de les 5 opcions.");
+					break;
+				}
+			} while (correcte2 == false);
+			// GDB.tancarConnexio();
+		
 		System.out.println("MENU");
 		System.out.println("1 - Manteniment de centres");
 		System.out.println("2 - Manteniment d'alumnes");
 		System.out.println("3 - Manteniment de tutors");
 		System.out.println("4 - Manteniment d'activitats");
-		System.out.println("4 - Manteniment d'activitats");
-
-
 				
-		in.close();
+		}
 		
-	}
-
 }
+	
+	
+
+

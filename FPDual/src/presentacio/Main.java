@@ -73,6 +73,7 @@ public class Main {
 				case 3:
 					System.out.println("Opcio 3 triada");
 					mt.opcions();
+					
 					break;
 				case 4:
 					System.out.println("Opcio 4 triada");

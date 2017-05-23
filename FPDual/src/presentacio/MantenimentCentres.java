@@ -44,19 +44,16 @@ public class MantenimentCentres {
 			}
 			switch (opcio) {
 			case 1:
-				System.out.println("Opcio 1 triada 'ALTA'");
 				correcte = true;
 				opcio1();
 				break;
 
 			case 2:
-				System.out.println("Opcio 2 triada 'BAIXA'");
 				correcte = true;
 				opcio2();
 				break;
 
 			case 3:
-				System.out.println("Opcio 3 triada 'LLISTAT'");
 				correcte = true;
 				opcio3();
 				break;
@@ -104,19 +101,26 @@ public class MantenimentCentres {
 
 				if (triar.equals("en")) {
 					System.out.print("Entra la ID del Centre: ");
-
-					idcentre = Integer.parseInt(br0.readLine());
-					String consultarid = "SELECT * FROM centre WHERE Id_centre LIKE " + idcentre + ";";
-					retorn = GDB.consultaRegistres(consultarid);
-					try {
-						i = 0;
-						while (retorn.next()) {
-							i++;
+					do {
+						comprova = br0.readLine();
+						enters = MantenimentCentres.isNumeric(comprova);
+						if (enters) {
+							idcentre = Integer.parseInt(comprova);
+							String consultarid = "SELECT * FROM centre WHERE Id_centre LIKE " + idcentre + ";";
+							retorn = GDB.consultaRegistres(consultarid);
+							try {
+								i = 0;
+								while (retorn.next()) {
+									i++;
+								}
+							} catch (SQLException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						} else {
+							System.out.println("Nomes pots entrar Numeros Enters.");
 						}
-					} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					} while (!enters);
 
 				}
 
@@ -130,7 +134,6 @@ public class MantenimentCentres {
 						System.out.print("Entra el Codi del Centre: ");
 						comprova = br0.readLine();
 						enters = MantenimentCentres.isNumeric(comprova);
-						System.out.println(enters);
 						if (enters) {
 							codi = Integer.parseInt(comprova);
 						} else {
@@ -162,7 +165,6 @@ public class MantenimentCentres {
 
 					}
 					if (triar.equals("au")) {
-						System.out.println("a entrao");
 						sentenciaSQL = "INSERT INTO centre (Nom, Codi, Telefon, Web) " + "VALUES('" + nom + "', " + codi
 								+ ", " + telefon + ", '" + web + "');";
 						GDB.modificarRegistre(sentenciaSQL);
@@ -188,24 +190,75 @@ public class MantenimentCentres {
 
 	private void opcio2() {
 		System.out.println("Opcio 'BAIXA'");
-		try {
-			System.out.print("Entra El Nom del Centre a fer la BAIXA: ");
-			nom = br0.readLine();
+		ResultSet retorn;
+		boolean correcte = false;
+		int cont = 0;
 
-		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		do {
+			try {
 
-		correcte = true;
-		System.out.println("Les dades entrades son: ");
-		System.out.println("Nom: " + nom);
-		sentenciaSQL = "DELETE FROM centre WHERE Nom LIKE '" + nom + "';";
-		GDB.modificarRegistre(sentenciaSQL);
-		System.out.println("Baixa realitzada correctament.");
+				String consultarid = "SELECT Nom FROM centre;";
+				retorn = GDB.consultaRegistres(consultarid);
+
+				System.out.println("Centres Actuals:");
+				System.out.print("\t");
+				try {
+					while (retorn.next()) {
+						System.out.print(retorn.getString(1) + ", ");
+						cont++;
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				System.out.println();
+				System.out.println("\tHi ha un total de " + cont + " centres.");
+				System.out.println();
+
+				System.out.print("Entra El Nom del Centre a fer la BAIXA: ");
+				nom = br0.readLine();
+
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			// -----------------------------------------------------------------------
+			System.out.println("nom: " + nom);
+
+			String consultarid = "SELECT Nom FROM centre WHERE Nom LIKE " + nom + ";";
+			retorn = GDB.consultaRegistres(consultarid);
+
+			i = 0;
+			// s
+
+			try {
+				while (retorn.next()) { // ERROR NULL
+					i++;
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			if (i == 0) {
+				System.out.println("El nom no es troba a la BDD.");
+				correcte = false;
+				// s
+			} else {
+				correcte = true;
+				System.out.println("Les dades entrades son: ");
+				System.out.println("Nom: " + nom);
+				sentenciaSQL = "DELETE FROM centre WHERE Nom LIKE '" + nom + "';";
+				GDB.modificarRegistre(sentenciaSQL);
+				System.out.println("Baixa realitzada correctament.");
+			}
+		} while (!correcte);
+
+		// -----------------------------------------------------------------------
 
 	}
 

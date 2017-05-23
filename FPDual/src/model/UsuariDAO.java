@@ -21,6 +21,7 @@ public class UsuariDAO {
 			String consultaSQL = "SELECT * FROM usuari WHERE NIF='"+nif+"' AND password='"+pw+"'";
 			rs = gestorDB.consultaRegistres(consultaSQL);
 			
+			
 			if(rs.first()){
 				return true;
 			}else{

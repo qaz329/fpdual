@@ -233,6 +233,7 @@ public class MantenimentCentres {
 			retorn = GDB.consultaRegistres(consultarid);
 
 			i = 0;
+			// s
 
 			try {
 				while (retorn.next()) { // ERROR NULL

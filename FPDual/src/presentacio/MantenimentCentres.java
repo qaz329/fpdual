@@ -196,7 +196,6 @@ public class MantenimentCentres {
 
 	private void opcio2() {
 		System.out.println("Opcio 'BAIXA'");
-
 		try {
 			System.out.print("Entra El Nom del Centre a fer la BAIXA: ");
 			InputStreamReader isr2 = new InputStreamReader(System.in);

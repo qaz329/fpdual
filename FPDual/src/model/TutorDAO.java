@@ -18,8 +18,8 @@ public class TutorDAO {
 		g=new GestorDB(Constants.SERVER, Constants.PORT, Constants.BD);
 	}
 	
-	public void altaTutor(Tutor t){
-		consultaSQL="INSERT INTO tutor VALUES(Id_usuari,'"+t.getTecnologia()+"');";
+	public void altaTutor(String t){
+		consultaSQL="INSERT INTO tutor VALUES(Id_usuari,'"+t+"');";
 		g.modificarRegistre(consultaSQL);
 		
 	}

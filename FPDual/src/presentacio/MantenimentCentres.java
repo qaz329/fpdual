@@ -16,6 +16,9 @@ public class MantenimentCentres {
 	int opcio = 0, idcentre = 0, codi = 0, telefon = 0, sortir = 0, i = 0;
 	String nom = null, triar, web = null, sentenciaSQL = null, operacio;
 
+	InputStreamReader isr0 = new InputStreamReader(System.in);
+	BufferedReader br0 = new BufferedReader(isr0);
+
 	public MantenimentCentres() {
 
 	}
@@ -30,10 +33,8 @@ public class MantenimentCentres {
 			System.out.println("\t3.- Llistat");
 			System.out.println("\t4.- Sortir");
 			System.out.println("Selecciona una opcio:");
-			InputStreamReader isr = new InputStreamReader(System.in);
-			BufferedReader br = new BufferedReader(isr);
 			try {
-				opcio = Integer.parseInt(br.readLine());
+				opcio = Integer.parseInt(br0.readLine());
 			} catch (NumberFormatException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -72,10 +73,9 @@ public class MantenimentCentres {
 			}
 			if (sortir == 0) {
 				System.out.println("Vols realitzar alguna altra operacio? 'si'/'no'");
-				InputStreamReader isr2 = new InputStreamReader(System.in);
-				BufferedReader br2 = new BufferedReader(isr);
+
 				try {
-					operacio = br2.readLine();
+					operacio = br0.readLine();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -92,20 +92,20 @@ public class MantenimentCentres {
 		System.out.println("Opcio 'ALTA'");
 		ResultSet retorn;
 		int hies = 0;
+		String comprova = "";
+		boolean enters = false;
 
-		System.out.print("Vols 'entrar' una ID o vols que sigui 'automatica' ? ");
-		InputStreamReader isr0 = new InputStreamReader(System.in);
-		BufferedReader br0 = new BufferedReader(isr0);
+		System.out.print("Vols entrar 'en' una ID o vols que sigui automatica 'au' ? ");
+
 		try {
 			triar = br0.readLine();
 
 			do {
 
-				if (triar.equals("entrar")) {
+				if (triar.equals("en")) {
 					System.out.print("Entra la ID del Centre: ");
-					InputStreamReader isr1 = new InputStreamReader(System.in);
-					BufferedReader br1 = new BufferedReader(isr1);
-					idcentre = Integer.parseInt(br1.readLine());
+
+					idcentre = Integer.parseInt(br0.readLine());
 					String consultarid = "SELECT * FROM centre WHERE Id_centre LIKE " + idcentre + ";";
 					retorn = GDB.consultaRegistres(consultarid);
 					try {
@@ -123,35 +123,45 @@ public class MantenimentCentres {
 				if (i == 0) {
 					hies = 1;
 					System.out.print("Entra El Nom del Centre: ");
-					InputStreamReader isr2 = new InputStreamReader(System.in);
-					BufferedReader br2 = new BufferedReader(isr2);
-					nom = br2.readLine();
 
-					System.out.print("Entra el Codi del Centre: ");
-					InputStreamReader isr3 = new InputStreamReader(System.in);
-					BufferedReader br3 = new BufferedReader(isr3);
-					codi = Integer.parseInt(br3.readLine());
+					nom = br0.readLine();
 
-					System.out.print("Entra el Telefon del Centre: ");
-					InputStreamReader isr4 = new InputStreamReader(System.in);
-					BufferedReader br4 = new BufferedReader(isr4);
-					telefon = Integer.parseInt(br4.readLine());
+					do {
+						System.out.print("Entra el Codi del Centre: ");
+						comprova = br0.readLine();
+						enters = MantenimentCentres.isNumeric(comprova);
+						System.out.println(enters);
+						if (enters) {
+							codi = Integer.parseInt(comprova);
+						} else {
+							System.out.println("Nomes pots entrar Numeros Enters.");
+						}
+					} while (!enters);
 
+					do {
+						System.out.print("Entra el Telefon del Centre: ");
+						comprova = br0.readLine();
+						enters = MantenimentCentres.isNumeric(comprova);
+						if (enters) {
+							telefon = Integer.parseInt(comprova);
+						} else {
+							System.out.println("Nomes pots entrar Numeros Enters.");
+						}
+					} while (!enters);
 					System.out.print("Entra la Web del Centre: ");
-					InputStreamReader isr5 = new InputStreamReader(System.in);
-					BufferedReader br5 = new BufferedReader(isr5);
-					web = br5.readLine();
+
+					web = br0.readLine();
 
 					correcte = true;
 
-					if (triar.equals("entrar")) {
-						sentenciaSQL = "INSERT INTO centre (id_centre, Nom, Codi, Telefon, Web) " + "VALUES(" + idcentre
+					if (triar.equals("en")) {
+						sentenciaSQL = "INSERT INTO centre (Id_centre, Nom, Codi, Telefon, Web) " + "VALUES(" + idcentre
 								+ ", '" + nom + "', " + codi + ", " + telefon + ", '" + web + "');";
 						GDB.modificarRegistre(sentenciaSQL);
 						System.out.println("Alta realitzada correctament Amb ID.");
 
 					}
-					if (triar.equals("automatica")) {
+					if (triar.equals("au")) {
 						System.out.println("a entrao");
 						sentenciaSQL = "INSERT INTO centre (Nom, Codi, Telefon, Web) " + "VALUES('" + nom + "', " + codi
 								+ ", " + telefon + ", '" + web + "');";
@@ -161,7 +171,7 @@ public class MantenimentCentres {
 					}
 				} else {
 					System.out.println();
-					System.out.println("La ID que introduit ja existeix, tria'n una de diferent.");
+					System.out.println("La ID que a introduit ja existeix, tria'n una de diferent.");
 					System.out.println();
 					hies = 0;
 				}
@@ -178,12 +188,9 @@ public class MantenimentCentres {
 
 	private void opcio2() {
 		System.out.println("Opcio 'BAIXA'");
-
 		try {
 			System.out.print("Entra El Nom del Centre a fer la BAIXA: ");
-			InputStreamReader isr2 = new InputStreamReader(System.in);
-			BufferedReader br2 = new BufferedReader(isr2);
-			nom = br2.readLine();
+			nom = br0.readLine();
 
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block
@@ -207,7 +214,7 @@ public class MantenimentCentres {
 		sentenciaSQL = "SELECT * FROM centre";
 		ResultSet rs = GDB.consultaRegistres(sentenciaSQL);
 		try {
-			System.out.println("id \t\tCodi \t\tNom \t\tTelefon \t\tWeb");
+			System.out.println("id \t\tNom \t\tCodi \t\tTelefon \t\tWeb");
 			while (rs.next()) {
 				for (int i = 1; i <= 5; i++) {
 					if (i > 1)
@@ -221,6 +228,14 @@ public class MantenimentCentres {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
 
+	private static boolean isNumeric(String cadena) {
+		try {
+			Integer.parseInt(cadena);
+			return true;
+		} catch (NumberFormatException nfe) {
+			return false;
+		}
 	}
 }

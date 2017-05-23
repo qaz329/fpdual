@@ -53,6 +53,7 @@ public class Main {
 		private static void opcionsCase() {
 			boolean correcte2 = true;
 			MantenimentCentres MC = new MantenimentCentres();
+			MantenimentAlumne ma = new MantenimentAlumne();
 
 			int opcio = 0;
 

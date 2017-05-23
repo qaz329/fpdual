@@ -1,9 +1,5 @@
 package presentacio;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import model.UsuariDAO;
@@ -54,6 +50,7 @@ public class Main {
 			boolean correcte2 = true;
 			MantenimentCentres MC = new MantenimentCentres();
 			MantenimentAlumne ma = new MantenimentAlumne();
+			MantenimentTutors mt=new MantenimentTutors();
 
 			int opcio = 0;
 
@@ -75,6 +72,7 @@ public class Main {
 					break;
 				case 3:
 					System.out.println("Opcio 3 triada");
+					mt.opcions();
 					break;
 				case 4:
 					System.out.println("Opcio 4 triada");

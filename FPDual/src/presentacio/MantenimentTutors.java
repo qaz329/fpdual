@@ -6,9 +6,13 @@ import java.io.InputStreamReader;
 
 import controlador.Constants;
 import controlador.GestorDB;
+import model.TutorDAO;
+import model.UsuariDAO;
 
 public class MantenimentTutors {
 	GestorDB GDB = new GestorDB(Constants.SERVER, Constants.PORT, Constants.BD);
+	UsuariDAO u=new UsuariDAO();
+	TutorDAO t=new TutorDAO();
 	boolean opcio=false;
 	String consultaSQL;
 	InputStreamReader isr=new InputStreamReader(System.in);
@@ -19,22 +23,39 @@ public class MantenimentTutors {
 	}
 	
 	public void opcions(){
-		System.out.println("Quina opció vols realitzar? ");
-		System.out.println("1.-Alta");
-		System.out.println("2.-Baixa");
-		System.out.println("3.-Llistat");
-		System.out.println("4.-Sortir");
 		String consulta="";
 		int opcio = 0;
+		boolean sortir=false;
 		try {
-			consulta=br.readLine();
-			opcio=Integer.parseInt(consulta);
-		} catch (IOException e) {
-			System.out.println("Error introduir opcio "+e.toString());
-		}
-		switch(opcio){
-		case 1:
-			alta();
+			do{
+				System.out.println("Quina opció vols realitzar? ");
+				System.out.println("1.-Alta");
+				System.out.println("2.-Baixa");
+				System.out.println("3.-Llistat");
+				System.out.println("4.-Sortir");
+				consulta=br.readLine();
+				opcio=Integer.parseInt(consulta);
+				switch(opcio){
+				case 1:
+					alta();
+					break;
+					
+				case 2:
+					baixa();
+					break;
+			
+				case 3:
+					break;
+				
+				case 4:
+					sortir=true;
+					break;
+				}
+				
+			}while(!sortir);
+			
+		}catch (IOException e) {
+		System.out.println("Error introduir opcio "+e.toString());
 		}
 	}
 	
@@ -44,8 +65,8 @@ public class MantenimentTutors {
 		String nom;
 		String pCog;
 		String sCog;
-		String data;
 		String mail;
+		String tecno;
 		boolean correcte=false;
 		try {
 			do{
@@ -55,60 +76,41 @@ public class MantenimentTutors {
 				if(nif.length()<9 || nif.length()>9){
 					System.out.println("NIF no vàlid");
 					correcte=false;
-				}else if(!Character.isLetter(nif.charAt(9))){
+				}else if(!Character.isLetter(nif.charAt(8))){
 					System.out.println("NIF no vàlid");
 					correcte=false;
 				}
 			}while(!correcte);
 			System.out.print("Introdueix la password per a l'usuari: ");
 			pass=br.readLine();
+			
 			System.out.print("Introdueix el nom de l'usuari: ");
 			nom=br.readLine();
+			
 			System.out.print("Introdueix el primer cognom de l'usuari: ");
 			pCog=br.readLine();
+			
 			System.out.print("Introdueix el segon cognom de l'usuari: ");
 			sCog=br.readLine();
-			correcte=false;
-			do{
-				int i = 0;
-				System.out.print("Introdueix la data (Any-mes-dia): ");
-				data=br.readLine();
-				correcte=true;
-				if(data.length()>10 || data.length()<10){
-					correcte=false;
-					System.out.println("Data no valida.");
-				}else if(!Character.isLetter(data.charAt(4)) || !Character.isLetter(data.charAt(7))){
-					correcte=false;
-					System.out.println("Data no valida. ");
-					i=Integer.parseInt(data.substring(5, 6));
-				}else{
-					for(int c=0;c<3;c++){
-						if(Character.isLetter(data.charAt(c))){
-							correcte=false;
-						}
-					}
-					for(int c=5;c<6;c++){
-						if(Character.isLetter(data.charAt(c))){
-							correcte=false;
-						}
-					}
-					for(int c=8;c<9;c++){
-						if(Character.isLetter(data.charAt(c))){
-							correcte=false;
-						}
-					}
-				}
-			}while(!correcte);
+			
 			System.out.print("Introdueix el mail de l'usuari: ");
 			mail=br.readLine();
 			
-			consultaSQL="INSERT INTO usuari VALUES(Id_usuari,'"+nif+"','"+pass+"','"+nom+"','"+pCog+"','"+sCog+"','"+data+"','"+mail+"');";
+			u.altaUsuari(nif, pass, nom, pCog, sCog, mail);
+			System.out.println("Alta usuari realitzada.");
 			
-	} catch (IOException e) {
-		System.out.println("Error Alta"+e.toString());
+			System.out.println("Introdueix la tecnologia del tutor a afegir: ");
+			tecno=br.readLine();
+			
+			t.altaTutor(tecno);
+			
+		} catch (IOException e) {
+		System.out.println("Error Alta "+e.toString());
+		}
 	}
-			
-			
+	
+	public void baixa(){
+		System.out.println("");
 	}
 	
 }

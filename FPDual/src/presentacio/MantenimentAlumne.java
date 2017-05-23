@@ -1,17 +1,19 @@
 package presentacio;
 
-import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 import model.AlumneDAO;
+import model.CentreDAO;
 import model.TutorDAO;
 import model.UsuariDAO;
 
 public class MantenimentAlumne {
-	Scanner in = new Scanner(System.in);
-	AlumneDAO aDAO = new AlumneDAO();
-	UsuariDAO uDAO = new UsuariDAO();
-	TutorDAO tDAO = new TutorDAO();
+	private Scanner in = new Scanner(System.in);
+	private AlumneDAO aDAO = new AlumneDAO();
+	private UsuariDAO uDAO = new UsuariDAO();
+	private TutorDAO tDAO = new TutorDAO();
+	private CentreDAO cDAO = new CentreDAO();
 	
 	public void menuAlumne(){
 		int opc;
@@ -35,9 +37,13 @@ public class MantenimentAlumne {
 	}
 	
 	public void altaAlumne(){
-		String nif, pw, nom, cognom1, cognom2, alta, mail, inici, fi;
+		String nif, pw, nom, cognom1, cognom2, alta, mail, inici, fi, id1, id2;
+		List<Integer> llistaTutors = tDAO.consultaIDTutor();
+		List<Integer> llistaCentres = cDAO.consultaIDCentre();
+
 		int idcentre=0, idtutor=0;
 		boolean correcte = false;
+		in.nextLine();
 		System.out.print("NIF: ");
 		nif = in.nextLine();
 		System.out.print("Nom: ");
@@ -50,8 +56,13 @@ public class MantenimentAlumne {
 		pw = in.nextLine();
 		System.out.print("e-Mail: ");
 		mail = in.nextLine();
+		System.out.print("ID del tutor "+llistaTutors+": ");
+		id1 = in.nextLine();
+		System.out.print("ID del centre "+llistaCentres+": ");
+		id2 = in.nextLine();
+
 		do{ 				// xxxx-xx-xx
-			System.out.print("Data inici: ");
+			System.out.print("Data inici (yyyy-mm-dd): ");
 			inici = in.nextLine();
 			if(inici.length()==10){
 				if(inici.charAt(4)=='-' && inici.charAt(7)=='-'){
@@ -96,7 +107,7 @@ public class MantenimentAlumne {
 			}
 		}while(!correcte);
 		do{ 				// xxxx-xx-xx
-			System.out.print("Data final: ");
+			System.out.print("Data final (yyyy-mm-dd): ");
 			fi = in.nextLine();
 			if(fi.length()==10){
 				if(fi.charAt(4)=='-' && fi.charAt(7)=='-'){
@@ -141,14 +152,11 @@ public class MantenimentAlumne {
 			}
 		}while(!correcte);
 		
-		
-		
+		idcentre = Integer.parseInt(id2);
+		idtutor = Integer.parseInt(id1);
+				
 		uDAO.altaUsuari(nif, pw, cognom2, cognom1, cognom2, mail);
 		aDAO.altaAlumne(inici, fi, idtutor, idcentre, nif);
-		
-		
-		
-		
 		
 		
 	}

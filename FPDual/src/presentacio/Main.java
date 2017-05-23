@@ -37,7 +37,7 @@ public class Main {
 					System.out.println("No hi ha el NIF");
 				}
 			}else{
-				System.out.println("NIF no vàlid");
+				System.out.println("NIF no vï¿½lid");
 				correcte=0;
 			}			
 		}while(correcte==0 || correcte==1);
@@ -46,6 +46,8 @@ public class Main {
 		System.out.println("2 - Manteniment d'alumnes");
 		System.out.println("3 - Manteniment de tutors");
 		System.out.println("4 - Manteniment d'activitats");
+		System.out.println("4 - Manteniment d'activitats");
+
 
 				
 		in.close();

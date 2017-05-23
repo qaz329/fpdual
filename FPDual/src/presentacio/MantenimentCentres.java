@@ -92,6 +92,8 @@ public class MantenimentCentres {
 		System.out.println("Opcio 'ALTA'");
 		ResultSet retorn;
 		int hies = 0;
+		String comprova = "";
+		boolean enters = false;
 
 		System.out.print("Vols 'entrar' una ID o vols que sigui 'automatica' ? ");
 		InputStreamReader isr0 = new InputStreamReader(System.in);
@@ -127,16 +129,32 @@ public class MantenimentCentres {
 					BufferedReader br2 = new BufferedReader(isr2);
 					nom = br2.readLine();
 
-					System.out.print("Entra el Codi del Centre: ");
-					InputStreamReader isr3 = new InputStreamReader(System.in);
-					BufferedReader br3 = new BufferedReader(isr3);
-					codi = Integer.parseInt(br3.readLine());
+					do {
+						System.out.print("Entra el Codi del Centre: ");
+						InputStreamReader isr3 = new InputStreamReader(System.in);
+						BufferedReader br3 = new BufferedReader(isr3);
+						comprova = br3.readLine();
+						enters = isNumeric(comprova);
+						if (enters) {
+							codi = Integer.parseInt(comprova);
+						} else {
+							System.out.println("Nomes pots entrar Numeros Enters.");
+						}
+					} while (!enters);
 
-					System.out.print("Entra el Telefon del Centre: ");
-					InputStreamReader isr4 = new InputStreamReader(System.in);
-					BufferedReader br4 = new BufferedReader(isr4);
-					telefon = Integer.parseInt(br4.readLine());
-
+					do {
+						System.out.print("Entra el Telefon del Centre: ");
+						InputStreamReader isr4 = new InputStreamReader(System.in);
+						BufferedReader br4 = new BufferedReader(isr4);
+						telefon = Integer.parseInt(br4.readLine());
+						comprova = br4.readLine();
+						enters = isNumeric(comprova);
+						if (enters) {
+							codi = Integer.parseInt(comprova);
+						} else {
+							System.out.println("Nomes pots entrar Numeros Enters.");
+						}
+					} while (!enters);
 					System.out.print("Entra la Web del Centre: ");
 					InputStreamReader isr5 = new InputStreamReader(System.in);
 					BufferedReader br5 = new BufferedReader(isr5);
@@ -221,6 +239,14 @@ public class MantenimentCentres {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
 
+	private static boolean isNumeric(String cadena) {
+		try {
+			Integer.parseInt(cadena);
+			return true;
+		} catch (NumberFormatException nfe) {
+			return false;
+		}
 	}
 }

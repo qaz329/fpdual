@@ -22,6 +22,20 @@ public class GestorDB {
 		}
 	}
 	
+	public int modificarRegistre(String consultaSQL) {
+		int numeroFilesAfectades = 0;
+
+		try {
+			stmt = conn.createStatement(); // Statement permet executar la
+											// consulta SQL
+			numeroFilesAfectades = stmt.executeUpdate(consultaSQL);
+		} catch (SQLException e) {
+			// e.printStackTrace();
+			System.out.printf("La consulta no s'ha pogut executar", e);
+		}
+		return numeroFilesAfectades;
+	}
+	
 	public ResultSet consultaRegistres(String sentencia){
 		ResultSet rs = null;
 		try{

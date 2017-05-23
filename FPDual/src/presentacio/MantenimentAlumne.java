@@ -4,12 +4,14 @@ import java.util.Date;
 import java.util.Scanner;
 
 import model.AlumneDAO;
+import model.TutorDAO;
 import model.UsuariDAO;
 
 public class MantenimentAlumne {
 	Scanner in = new Scanner(System.in);
 	AlumneDAO aDAO = new AlumneDAO();
 	UsuariDAO uDAO = new UsuariDAO();
+	TutorDAO tDAO = new TutorDAO();
 	
 	public void menuAlumne(){
 		int opc;

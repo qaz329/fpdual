@@ -51,4 +51,18 @@ public class TutorDAO {
 		}
 		return dades;
 	}
+	
+	public List<Integer> consultaIDTutor(){
+		consultaSQL="SELECT id_usuari FROM tutor;";
+		ResultSet rs;
+		List<Integer> dades = new ArrayList<Integer>();
+		try {
+			rs=g.consultaRegistres(consultaSQL);
+			while(rs.next()){
+				dades.add(rs.getInt("id_usuari"));			}
+		} catch (SQLException e) {
+			System.out.println("Error consulta id tutor "+e.toString());
+		}
+		return dades;
+	}
 }

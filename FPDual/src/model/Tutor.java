@@ -7,7 +7,7 @@ public class Tutor extends Usuari{
 	public Tutor(int id_usuari, String tecnologia) {
 		super();
 		Usuari u=new Usuari();
-		this.id_usuari = u.getId();
+		this.id_usuari = u.getIdUsuari();
 		this.tecnologia = tecnologia;
 	}
 	

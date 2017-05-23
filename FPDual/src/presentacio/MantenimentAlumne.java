@@ -4,10 +4,12 @@ import java.util.Date;
 import java.util.Scanner;
 
 import model.AlumneDAO;
+import model.UsuariDAO;
 
 public class MantenimentAlumne {
 	Scanner in = new Scanner(System.in);
 	AlumneDAO aDAO = new AlumneDAO();
+	UsuariDAO uDAO = new UsuariDAO();
 	
 	public void menuAlumne(){
 		int opc;
@@ -32,6 +34,7 @@ public class MantenimentAlumne {
 	
 	public void altaAlumne(){
 		String nif, pw, nom, cognom1, cognom2, alta, mail, inici, fi;
+		int idcentre=0, idtutor=0;
 		boolean correcte = false;
 		System.out.print("NIF: ");
 		nif = in.nextLine();
@@ -137,6 +140,9 @@ public class MantenimentAlumne {
 		}while(!correcte);
 		
 		
+		
+		uDAO.altaUsuari(nif, pw, cognom2, cognom1, cognom2, mail);
+		aDAO.altaAlumne(inici, fi, idtutor, idcentre, nif);
 		
 		
 		

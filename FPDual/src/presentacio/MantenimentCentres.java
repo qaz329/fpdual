@@ -5,18 +5,18 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
-import controlador.Constants;
-import controlador.GestorDB;
 import model.CentreDAO;
 
 public class MantenimentCentres {
-	GestorDB GDB = new GestorDB(Constants.SERVER, Constants.PORT, Constants.BD);
-	CentreDAO cdao;
+	// GestorDB GDB = new GestorDB(Constants.SERVER, Constants.PORT,
+	// Constants.BD);
+	CentreDAO cdao = new CentreDAO();
 
 	boolean correcte = true;
 	int opcio = 0, idcentre = 0, codi = 0, telefon = 0, sortir = 0, i = 0;
-	String nom = null, triar, web = null, sentenciaSQL = null, operacio;
+	String nom = "", triar, web = "", sentenciaSQL = "", operacio;
 
 	InputStreamReader isr0 = new InputStreamReader(System.in);
 	BufferedReader br0 = new BufferedReader(isr0);
@@ -89,7 +89,7 @@ public class MantenimentCentres {
 
 	private void opcio1() {
 		System.out.println("Opcio 'ALTA'");
-		ResultSet retorn;
+
 		int hies = 0;
 		String comprova = "";
 		boolean enters = false;
@@ -108,17 +108,7 @@ public class MantenimentCentres {
 						enters = MantenimentCentres.isNumeric(comprova);
 						if (enters) {
 							idcentre = Integer.parseInt(comprova);
-							String consultarid = "SELECT * FROM centre WHERE Id_centre LIKE " + idcentre + ";";
-							retorn = GDB.consultaRegistres(consultarid);
-							try {
-								i = 0;
-								while (retorn.next()) {
-									i++;
-								}
-							} catch (SQLException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
+							i = cdao.consultaIDAlta(enters, comprova, idcentre);
 						} else {
 							System.out.println("Nomes pots entrar Numeros Enters.");
 						}
@@ -162,14 +152,12 @@ public class MantenimentCentres {
 					if (triar.equals("en")) {
 						int e = 0;
 
-						System.out.println("--> " + idcentre + ", " + nom + ", " + codi + ", " + telefon + ", " + web);
-
 						e = cdao.altaCentreEntradaId(idcentre, nom, codi, telefon, web);
-						System.out.println("e --> " + e);
+						System.out.println("e ---> " + e);
 						if (e != 0) {
 							System.out.println("Alta realitzada correctament Amb ID.");
 						} else {
-							System.out.println("Error Alta ID");
+							System.out.println("errores");
 						}
 
 					}
@@ -197,27 +185,23 @@ public class MantenimentCentres {
 
 	private void opcio2() {
 		System.out.println("Opcio 'BAIXA'");
-		ResultSet retorn;
+		List<String> retorn;
 		boolean correcte = false;
 		int cont = 0;
 
 		do {
 			try {
-
-				String consultarid = "SELECT Nom FROM centre;";
-				retorn = GDB.consultaRegistres(consultarid);
+				retorn = cdao.consultarNoms();
 
 				System.out.println("Centres Actuals:");
 				System.out.print("\t");
-				try {
-					while (retorn.next()) {
-						System.out.print(retorn.getString(1) + ", ");
-						cont++;
-					}
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+
+				for (String nombre : retorn) {
+
+					System.out.println(nombre);
+					cont++;
 				}
+
 				System.out.println();
 				System.out.println("\tHi ha un total de " + cont + " centres.");
 				System.out.println();
@@ -236,32 +220,25 @@ public class MantenimentCentres {
 			// -----------------------------------------------------------------------
 			System.out.println("nom: " + nom);
 
-			String consultarid = "SELECT Nom FROM centre WHERE Nom LIKE " + nom + ";";
-			retorn = GDB.consultaRegistres(consultarid);
+			i = cdao.consultarRegNom(nom);
 
-			i = 0;
 			// s
-
-			try {
-				while (retorn.next()) { // ERROR NULL
-					i++;
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 
 			if (i == 0) {
 				System.out.println("El nom no es troba a la BDD.");
 				correcte = false;
 				// s
 			} else {
+				int e = 0;
 				correcte = true;
 				System.out.println("Les dades entrades son: ");
 				System.out.println("Nom: " + nom);
-				sentenciaSQL = "DELETE FROM centre WHERE Nom LIKE '" + nom + "';";
-				GDB.modificarRegistre(sentenciaSQL);
-				System.out.println("Baixa realitzada correctament.");
+				e = cdao.donarBaixa(nom);
+				if (e == 1) {
+					System.out.println("Baixa realitzada correctament.");
+				} else {
+					System.out.println("Error baixa");
+				}
 			}
 		} while (!correcte);
 
@@ -270,9 +247,10 @@ public class MantenimentCentres {
 	}
 
 	private void opcio3() {
+		ResultSet rs;
 		System.out.println("Opcio 'LLISTAT'");
-		sentenciaSQL = "SELECT * FROM centre";
-		ResultSet rs = GDB.consultaRegistres(sentenciaSQL);
+
+		rs = cdao.consultarCentres();
 		try {
 			System.out.println("id \t\tNom \t\tCodi \t\tTelefon \t\tWeb");
 			while (rs.next()) {

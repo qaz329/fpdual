@@ -1,5 +1,10 @@
 package model;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import controlador.Constants;
 import controlador.GestorDB;
 
@@ -18,5 +23,32 @@ public class AlumneDAO {
 				+ "FROM usuari WHERE NIF LIKE '"+nif+"'";
 		gestorDB.modificarRegistre(consultaSQL);
 		
+	}
+	
+	public void baixaAlumne(int id){
+		String consultaSQL = "DELETE FROM alumne WHERE id_usuari="+id;
+		gestorDB.modificarRegistre(consultaSQL);
+		consultaSQL = "DELETE FROM usuari WHERE id_usuari="+id;
+		gestorDB.modificarRegistre(consultaSQL);
+	}
+	
+	public List<String> consultaIDAlumne(){
+		String consultaSQL="SELECT u.id_usuari, u.nom, u.primer_cognom FROM usuari AS u, alumne AS a WHERE a.id_usuari=u.id_usuari";
+		ResultSet rs = null;
+		List<String> dades = new ArrayList<String>();
+		int i=0;
+		try {
+			rs = gestorDB.consultaRegistres(consultaSQL);
+			while (rs.next()) {
+				String strTmp = "";
+				strTmp += rs.getInt("id_usuari")+", ";
+				strTmp += rs.getString("nom")+" ";
+				strTmp += rs.getString("primer_cognom");
+				dades.add(strTmp);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return dades;
 	}
 }

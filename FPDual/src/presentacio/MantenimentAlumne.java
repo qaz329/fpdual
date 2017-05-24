@@ -155,14 +155,42 @@ public class MantenimentAlumne {
 		idcentre = Integer.parseInt(id2);
 		idtutor = Integer.parseInt(id1);
 				
-		uDAO.altaUsuari(nif, pw, cognom2, cognom1, cognom2, mail);
+		uDAO.altaUsuari(nif, pw, nom, cognom1, cognom2, mail);
 		aDAO.altaAlumne(inici, fi, idtutor, idcentre, nif);
+		
+		this.altraOperacio();
 		
 		
 	}
 	
+	public void altraOperacio(){
+		String opc;
+		System.out.print("\nVols fer una altra operacio? (s/n): ");
+		opc = in.nextLine();
+		switch(opc){
+		case "s": case "S": case "si": case "Si": case "SI": case "sI":
+			this.menuAlumne();
+			break;
+		case "n": case "N": case "no": case "No": case "NO": case "nO":
+			System.out.println("Fins una altra!");
+			break;
+		default:
+			System.out.println("Opció incorrecta, sortint...");
+		}
+	}
+	
 	public void baixaAlumne(){
-		
+		List<String> llista = aDAO.consultaIDAlumne();
+		int id;
+		System.out.println("--------------------------");
+		for(int i=0; i<llista.size(); i++){
+			System.out.println(llista.get(i));
+		}
+		System.out.print("Quin alumne vols donar de baixa? (id): ");
+		id = in.nextInt();
+		aDAO.baixaAlumne(id);
+		this.altraOperacio();
+
 	}
 	
 	public void consultaAlumnes(){

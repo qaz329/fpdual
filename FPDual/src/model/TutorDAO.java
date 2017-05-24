@@ -17,9 +17,9 @@ public class TutorDAO {
 	public TutorDAO(){
 		g=new GestorDB(Constants.SERVER, Constants.PORT, Constants.BD);
 	}
-	
-	public void altaTutor(String tecno){
-		consultaSQL="INSERT INTO tutor VALUES(Id_usuari,'"+tecno+"');";
+
+	public void altaTutor(String t){
+		consultaSQL="INSERT INTO tutor VALUES(Id_usuari,'"+t+"');";
 		g.modificarRegistre(consultaSQL);
 		
 	}
@@ -45,6 +45,20 @@ public class TutorDAO {
 			}
 		} catch (SQLException e) {
 			System.out.println("Error consulta tutor "+e.toString());
+		}
+		return dades;
+	}
+	
+	public List<Integer> consultaIDTutor(){
+		consultaSQL="SELECT id_usuari FROM tutor;";
+		ResultSet rs;
+		List<Integer> dades = new ArrayList<Integer>();
+		try {
+			rs=g.consultaRegistres(consultaSQL);
+			while(rs.next()){
+				dades.add(rs.getInt("id_usuari"));			}
+		} catch (SQLException e) {
+			System.out.println("Error consulta id tutor "+e.toString());
 		}
 		return dades;
 	}

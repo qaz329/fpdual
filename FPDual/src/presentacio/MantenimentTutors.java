@@ -101,7 +101,6 @@ public class MantenimentTutors {
 			
 			System.out.println("Introdueix la tecnologia del tutor a afegir: ");
 			tecno=br.readLine();
-			
 			t.altaTutor(tecno);
 			
 		} catch (IOException e) {

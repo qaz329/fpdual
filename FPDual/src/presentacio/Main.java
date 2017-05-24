@@ -69,6 +69,9 @@ public class Main {
 					break;
 				case 2:
 					System.out.println("Opcio 2 triada");
+					in.nextLine();
+
+					ma.menuAlumne();
 					break;
 				case 3:
 					System.out.println("Opcio 3 triada");

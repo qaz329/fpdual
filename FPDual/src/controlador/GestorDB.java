@@ -47,6 +47,7 @@ public class GestorDB {
 		return rs;
 	}
 	
+	
 	public void tancarConnexio() {
 		try {
 			if (conn != null) conn.close();

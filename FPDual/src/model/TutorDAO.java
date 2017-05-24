@@ -19,8 +19,6 @@ public class TutorDAO {
 	}
 
 	public void altaTutor(String nif,String t){
-		System.out.println(t);
-		System.out.println(nif);
 		consultaSQL="INSERT INTO tutor (id_usuari,tecnologia) "+
 				"SELECT Id_usuari,'"+t+"' "+
 				"FROM usuari "+

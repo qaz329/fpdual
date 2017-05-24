@@ -88,6 +88,9 @@ public class MantenimentTutors {
 							correcte=false;
 						}
 					}
+					if(correcte==false){
+						System.out.println("NIF no vàlid");
+					}
 				}
 			}while(!correcte);
 			System.out.print("Introdueix la password per a l'usuari: ");
@@ -110,7 +113,6 @@ public class MantenimentTutors {
 			
 			System.out.println("Introdueix la tecnologia del tutor a afegir: ");
 			tecno=br.readLine();
-			System.out.println(tecno);
 			t.altaTutor(nif,tecno);
 			
 		} catch (IOException e) {

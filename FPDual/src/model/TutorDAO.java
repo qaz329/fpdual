@@ -18,22 +18,19 @@ public class TutorDAO {
 		g=new GestorDB(Constants.SERVER, Constants.PORT, Constants.BD);
 	}
 	
-	public void altaTutor(Tutor t){
-		consultaSQL="INSERT INTO tutor VALUES(Id_usuari,'"+t.getTecnologia()+"');";
+	public void altaTutor(String tecno){
+		consultaSQL="INSERT INTO tutor VALUES(Id_usuari,'"+tecno+"');";
 		g.modificarRegistre(consultaSQL);
 		
 	}
 	
 	public void baixaTutor(int id){
-		try {
-			consultaSQL="DELETE FROM tutor WHERE id_usuari="+id+";";
-			stmt.addBatch(consultaSQL);
-			consultaSQL="DELETE FROM usuari WHERE id_usuari="+id+";";
-			stmt.addBatch(consultaSQL);
-			stmt.executeBatch();
-		} catch (SQLException e) {
-			System.out.println("Error baixa tutor "+e.toString());
-		}
+		
+		consultaSQL="DELETE FROM tutor WHERE id_usuari="+id+";";
+		g.modificarRegistre(consultaSQL);
+		consultaSQL="DELETE FROM usuari WHERE id_usuari="+id+";";
+		g.modificarRegistre(consultaSQL);
+
 	}
 	
 	public List<String> consultaTutor(){

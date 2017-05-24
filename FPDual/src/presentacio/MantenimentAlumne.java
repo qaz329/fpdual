@@ -208,7 +208,6 @@ public class MantenimentAlumne {
 		}
 		System.out.println("\n------------------------------------------------------------------------");
 		in.nextLine();
-		this.altraOperacio();
-		
+		this.altraOperacio();		
 	}
 }

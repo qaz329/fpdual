@@ -15,6 +15,19 @@ public class UsuariDAO {
 		gestorDB = new GestorDB(Constants.SERVER, Constants.PORT, Constants.BD);
 	}
 	
+	public int consultaID(String nif){
+		int id = 0;
+		try{
+			ResultSet rs=null;
+			String consultaSQL="SELECT Id_usuari FROM usuari WHERE nif='"+nif+"';";
+			rs=gestorDB.consultaRegistres(consultaSQL);
+			id=rs.getInt("Id_usuari");
+		}catch(SQLException e){
+			System.out.println("Error consulta ID");
+		}
+		return id;
+	}
+	
 	public boolean iniciSessio(String nif, String pw){
 		try {
 			ResultSet rs = null;

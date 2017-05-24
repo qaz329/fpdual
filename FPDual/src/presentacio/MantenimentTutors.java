@@ -28,7 +28,7 @@ public class MantenimentTutors {
 		boolean sortir=false;
 		try {
 			do{
-				System.out.println("Quina opció vols realitzar? ");
+				System.out.println("\nQuina opció vols realitzar? ");
 				System.out.println("1.-Alta");
 				System.out.println("2.-Baixa");
 				System.out.println("3.-Llistat");
@@ -79,6 +79,12 @@ public class MantenimentTutors {
 				}else if(!Character.isLetter(nif.charAt(8))){
 					System.out.println("NIF no vàlid");
 					correcte=false;
+				}else{
+					for(int i=0;i<8;i++){
+						if(!Character.isDigit(nif.charAt(i))){
+							correcte=false;
+						}
+					}
 				}
 			}while(!correcte);
 			System.out.print("Introdueix la password per a l'usuari: ");
@@ -101,7 +107,8 @@ public class MantenimentTutors {
 			
 			System.out.println("Introdueix la tecnologia del tutor a afegir: ");
 			tecno=br.readLine();
-			t.altaTutor(tecno);
+			System.out.println(tecno);
+			t.altaTutor(nif,tecno);
 			
 		} catch (IOException e) {
 		System.out.println("Error Alta "+e.toString());
@@ -109,7 +116,18 @@ public class MantenimentTutors {
 	}
 	
 	public void baixa(){
-		System.out.println("");
+		String nif;
+		int id;
+		try {
+			System.out.println("Introdueix el NIF del tutor a donar de baixa: ");
+			nif=br.readLine();
+			id=u.consultaID(nif);
+			t.baixaTutor(id);
+			System.out.println("Baixa realitzada");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }

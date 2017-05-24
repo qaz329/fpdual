@@ -20,7 +20,7 @@ public class MantenimentAlumne {
 		System.out.println("1 - Alta");
 		System.out.println("2 - Baixa");
 		System.out.println("3 - Llistat");
-		System.out.println("Selecciona una opció: ");
+		System.out.print("Selecciona una opció: ");
 		opc = in.nextInt();
 		switch(opc){
 		case 1:
@@ -164,11 +164,13 @@ public class MantenimentAlumne {
 	}
 	
 	public void altraOperacio(){
+		//in.nextLine();
 		String opc;
 		System.out.print("\nVols fer una altra operacio? (s/n): ");
 		opc = in.nextLine();
 		switch(opc){
 		case "s": case "S": case "si": case "Si": case "SI": case "sI":
+			System.out.println("------------------------------------------------------------------------");
 			this.menuAlumne();
 			break;
 		case "n": case "N": case "no": case "No": case "NO": case "nO":
@@ -194,6 +196,19 @@ public class MantenimentAlumne {
 	}
 	
 	public void consultaAlumnes(){
+		Object[] obj = aDAO.consultaAlumnes();
+		int linies = obj.length/(obj.length/2);
+		System.out.println("ID\tNOM\tCOGNOM\tINICI\t\tFINAL\t\tCENTRE\tID TUTOR");
+		System.out.println("------------------------------------------------------------------------");
+		for(int l=0; l<obj.length; l++){
+			if(l%7==0 && l!=0){
+				System.out.println();
+			}
+			System.out.print(obj[l]+"\t");
+		}
+		System.out.println("\n------------------------------------------------------------------------");
+		in.nextLine();
+		this.altraOperacio();
 		
 	}
 }

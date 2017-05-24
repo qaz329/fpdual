@@ -166,21 +166,11 @@ public class MantenimentAlumne {
 		System.out.print("\nVols fer una altra operacio? (s/n): ");
 		opc = in.nextLine();
 		switch (opc) {
-		case "s":
-		case "S":
-		case "si":
-		case "Si":
-		case "SI":
-		case "sI":
+		case "s":case "S":case "si":case "Si":case "SI":case "sI":
 			System.out.println("------------------------------------------------------------------------");
 			this.menuAlumne();
 			break;
-		case "n":
-		case "N":
-		case "no":
-		case "No":
-		case "NO":
-		case "nO":
+		case "n":case "N":case "no":case "No":case "NO":case "nO":
 			System.out.println("Fins una altra!");
 			break;
 		default:

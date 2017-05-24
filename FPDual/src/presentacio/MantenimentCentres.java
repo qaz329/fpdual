@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 import model.CentreDAO;
 
@@ -61,7 +60,7 @@ public class MantenimentCentres {
 				break;
 
 			case 4:
-				System.out.println("Adeu!");
+				System.out.println("Tornan al Menu principal..");
 				sortir = 1;
 				break;
 
@@ -80,6 +79,11 @@ public class MantenimentCentres {
 					e.printStackTrace();
 				}
 				System.out.println("Altra operacio : " + operacio);
+			}
+			if (sortir == 1) {
+				Main main = new Main();
+				main.opcionsCase();
+				operacio = "no";
 			}
 		} while (operacio.equals("si"));
 
@@ -184,30 +188,42 @@ public class MantenimentCentres {
 	}
 
 	private void opcio2() {
+		String id = null;
 		System.out.println("Opcio 'BAIXA'");
-		List<String> retorn;
+		ResultSet retorn;
 		boolean correcte = false;
 		int cont = 0;
 
 		do {
 			try {
-				retorn = cdao.consultarNoms();
+				retorn = cdao.consultarIdNoms();
 
-				System.out.println("Centres Actuals:");
-				System.out.print("\t");
+				System.out.println("Centres Actuals: \nID \tNOM \n-----------------");
+				System.out.print("");
+				try {
+					while (retorn.next()) {
+						for (int i = 1; i <= 2; i++) {
+							if (i > 1)
+								System.out.print(" \t");
+							String columnValue = retorn.getString(i);
+							System.out.print(columnValue);
 
-				for (String nombre : retorn) {
-
-					System.out.println(nombre);
-					cont++;
+						}
+						cont++;
+						System.out.println("");
+					}
+					System.out.print("\n-----------------");
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 
 				System.out.println();
 				System.out.println("\tHi ha un total de " + cont + " centres.");
 				System.out.println();
 
-				System.out.print("Entra El Nom del Centre a fer la BAIXA: ");
-				nom = br0.readLine();
+				System.out.print("Entra la ID del Centre a fer la BAIXA: ");
+				id = br0.readLine();
 
 			} catch (NumberFormatException e) {
 				// TODO Auto-generated catch block
@@ -218,22 +234,20 @@ public class MantenimentCentres {
 			}
 
 			// -----------------------------------------------------------------------
-			System.out.println("nom: " + nom);
+			System.out.println("Id: " + id);
 
-			i = cdao.consultarRegNom(nom);
-
-			// s
+			i = cdao.consultarRegID(id);
 
 			if (i == 0) {
-				System.out.println("El nom no es troba a la BDD.");
+				System.out.println("La ID no es troba a la BDD.");
 				correcte = false;
 				// s
 			} else {
 				int e = 0;
 				correcte = true;
 				System.out.println("Les dades entrades son: ");
-				System.out.println("Nom: " + nom);
-				e = cdao.donarBaixa(nom);
+				System.out.println("Id: " + id);
+				e = cdao.donarBaixa(id);
 				if (e == 1) {
 					System.out.println("Baixa realitzada correctament.");
 				} else {

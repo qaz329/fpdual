@@ -65,25 +65,17 @@ public class CentreDAO {
 		return i;
 	}
 
-	public List<String> consultarNoms() {
+	public ResultSet consultarIdNoms() {
 		ResultSet retorn;
-		String consultaSQL = "SELECT Nom FROM centre;";
-		List<String> dades = new ArrayList<String>();
-		try {
-			retorn = gestorDB.consultaRegistres(consultaSQL);
-			while (retorn.next()) {
-				dades.add(retorn.getString(1));
-			}
-		} catch (SQLException e) {
-			System.out.println("Error consulta noms" + e.toString());
-		}
-		return dades;
+		String consultaSQL = "SELECT id_centre, Nom FROM centre;";
+		retorn = gestorDB.consultaRegistres(consultaSQL);
+		return retorn;
 	}
 
-	public int consultarRegNom(String nom) {
+	public int consultarRegID(String id) {
 		ResultSet retorn;
 		int i = 0;
-		String consultarid = "SELECT Nom FROM centre WHERE Nom LIKE '" + nom + "';";
+		String consultarid = "SELECT id_centre FROM centre WHERE id_centre LIKE " + id + ";";
 
 		try {
 			retorn = gestorDB.consultaRegistres(consultarid);
@@ -99,9 +91,9 @@ public class CentreDAO {
 		return i;
 	}
 
-	public int donarBaixa(String nom) {
+	public int donarBaixa(String id) {
 		int i = 0;
-		sentenciaSQL = "DELETE FROM centre WHERE Nom LIKE '" + nom + "';";
+		sentenciaSQL = "DELETE FROM centre WHERE id_centre LIKE '" + id + "';";
 		i = gestorDB.modificarRegistre(sentenciaSQL);
 		return i;
 	}

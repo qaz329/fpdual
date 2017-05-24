@@ -13,11 +13,11 @@ public class CentreDAO {
 	String sentenciaSQL;
 
 	public CentreDAO() {
-
+		gestorDB = new GestorDB(Constants.SERVER, Constants.PORT, Constants.BD);
 	}
 
 	public List<Integer> consultaIDCentre() {
-		gestorDB = new GestorDB(Constants.SERVER, Constants.PORT, Constants.BD);
+
 		String consultaSQL = "SELECT id_centre FROM centre;";
 		ResultSet rs;
 		List<Integer> dades = new ArrayList<Integer>();

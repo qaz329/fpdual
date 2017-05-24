@@ -47,6 +47,7 @@ public class MantenimentTutors {
 					break;
 			
 				case 3:
+					llistat();
 					break;
 				
 				case 4:

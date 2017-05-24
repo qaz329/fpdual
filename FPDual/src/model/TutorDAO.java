@@ -48,7 +48,7 @@ public class TutorDAO {
 				String d="";
 				d+=rs.getInt("Id_usuari")+",";
 				d+=rs.getString("tecnologia")+",";
-				d+=rs.getString("Nom")+"\n";
+				d+=rs.getString("Nom");
 				dades.add(d);
 			}
 		} catch (SQLException e) {

@@ -181,8 +181,18 @@ public class MantenimentAlumne {
 
 	
 	public void baixaAlumne(){
-		
+		List<String> llista = aDAO.consultaIDAlumne();
+		int id;
+		System.out.println("--------------------------");
+		for(int i=0; i<llista.size(); i++){
+			System.out.println(llista.get(i));
+		}
+		System.out.print("Quin alumne vols donar de baixa? (id): ");
+		id = in.nextInt();
+		aDAO.baixaAlumne(id);
+		this.altraOperacio();
 	}
+
 	
 	public void consultaAlumnes() {
 		Object[] obj = aDAO.consultaAlumnes();

@@ -37,16 +37,17 @@ public class TutorDAO {
 	}
 	
 	public List<String> consultaTutor(){
-		consultaSQL="SELECT t.Id_usuari,t.tecnologia,u.nom FROM tutor AS t,usuari AS u WHERE t.id_usuari=u.id_usuari;";
+		consultaSQL="SELECT t.Id_usuari,t.tecnologia,u.nom,u.nif FROM tutor AS t,usuari AS u WHERE t.id_usuari=u.id_usuari;";
 		ResultSet rs=null;
 		List<String> dades = new ArrayList<String>();
 		try {
 			rs=g.consultaRegistres(consultaSQL);
 			while(rs.next()){
 				String d="";
-				d+=rs.getInt("Id_usuari")+",";
-				d+=rs.getString("tecnologia")+",";
-				d+=rs.getString("Nom");
+				d+=rs.getInt("Id_usuari")+"\t";
+				d+=rs.getString("tecnologia")+"\t";
+				d+=rs.getString("Nom")+"\t";
+				d+=rs.getString("NIF");
 				dades.add(d);
 			}
 		} catch (SQLException e) {

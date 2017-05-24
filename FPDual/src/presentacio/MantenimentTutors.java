@@ -53,8 +53,10 @@ public class MantenimentTutors {
 				case 4:
 					sortir=true;
 					break;
+				default:
+					System.out.println("Tens que triar una de les 4 opcions.");
+					break;
 				}
-				
 			}while(!sortir);
 			
 		}catch (IOException e) {
@@ -138,7 +140,12 @@ public class MantenimentTutors {
 	public void llistat(){
 		List<String>llista=new ArrayList<String>();
 		llista=t.consultaTutor();
-		System.out.println(llista);
+		System.out.println("ID\tTecno\tNom\tNIF");
+		System.out.println("----------------------------------------");
+		for(int i=0;i<llista.size();i++){
+			System.out.println(llista.get(i));
+		}
+		//System.out.println(llista);
 	}
 	
 }

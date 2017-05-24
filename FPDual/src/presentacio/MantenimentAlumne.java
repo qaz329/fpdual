@@ -190,6 +190,7 @@ public class MantenimentAlumne {
 		System.out.print("Quin alumne vols donar de baixa? (id): ");
 		id = in.nextInt();
 		aDAO.baixaAlumne(id);
+		in.nextLine();
 		this.altraOperacio();
 	}
 

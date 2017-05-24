@@ -18,6 +18,7 @@ public class UsuariDAO {
 	public int consultaID(String nif){
 		int id = 0;
 		try{
+			
 			ResultSet rs=null;
 			String consultaSQL="SELECT Id_usuari FROM usuari WHERE nif='"+nif+"';";
 			rs=gestorDB.consultaRegistres(consultaSQL);

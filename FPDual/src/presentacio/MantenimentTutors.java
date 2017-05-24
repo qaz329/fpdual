@@ -3,6 +3,8 @@ package presentacio;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 import controlador.Constants;
 import controlador.GestorDB;
@@ -128,6 +130,12 @@ public class MantenimentTutors {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public void llistat(){
+		List<String>llista=new ArrayList<String>();
+		llista=t.consultaTutor();
+		System.out.println(llista);
 	}
 	
 }

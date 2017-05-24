@@ -22,6 +22,7 @@ public class UsuariDAO {
 			ResultSet rs=null;
 			String consultaSQL="SELECT Id_usuari FROM usuari WHERE nif='"+nif+"';";
 			rs=gestorDB.consultaRegistres(consultaSQL);
+			rs.next();
 			id=rs.getInt("Id_usuari");
 		}catch(SQLException e){
 			System.out.println("Error consulta ID");

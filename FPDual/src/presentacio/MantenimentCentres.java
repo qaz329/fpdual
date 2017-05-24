@@ -97,7 +97,7 @@ public class MantenimentCentres {
 		int hies = 0;
 		String comprova = "";
 		boolean enters = false;
-
+		//
 		System.out.print("Vols entrar 'en' una ID o vols que sigui automatica 'au' ? ");
 
 		try {

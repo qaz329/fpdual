@@ -17,15 +17,22 @@ public class CentreDAO {
 	}
 
 	public List<Integer> consultaIDCentre() {
+		String consultaSQL = "SELECT Id_centre FROM centre;";
 
-		String consultaSQL = "SELECT id_centre FROM centre;";
 		ResultSet rs;
 		List<Integer> dades = new ArrayList<Integer>();
 		try {
+
 			rs = gestorDB.consultaRegistres(consultaSQL);
 			while (rs.next()) {
 				dades.add(rs.getInt("id_centre"));
 			}
+
+			rs = gestorDB.consultaRegistres(consultaSQL);
+			while (rs.next()) {
+				dades.add(rs.getInt("Id_centre"));
+			}
+
 		} catch (SQLException e) {
 			System.out.println("Error consulta id centre " + e.toString());
 		}

@@ -184,7 +184,7 @@ public class MantenimentAlumne {
 			System.out.println("Fins una altra!");
 			break;
 		default:
-			System.out.println("OpciÃ³ incorrecta, sortint...");
+			System.out.println("Opció incorrecta, sortint...");
 		}
 
 	}

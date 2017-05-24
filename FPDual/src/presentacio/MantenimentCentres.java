@@ -8,9 +8,11 @@ import java.sql.SQLException;
 
 import controlador.Constants;
 import controlador.GestorDB;
+import model.CentreDAO;
 
 public class MantenimentCentres {
 	GestorDB GDB = new GestorDB(Constants.SERVER, Constants.PORT, Constants.BD);
+	CentreDAO cdao;
 
 	boolean correcte = true;
 	int opcio = 0, idcentre = 0, codi = 0, telefon = 0, sortir = 0, i = 0;
@@ -158,16 +160,21 @@ public class MantenimentCentres {
 					correcte = true;
 
 					if (triar.equals("en")) {
-						sentenciaSQL = "INSERT INTO centre (Id_centre, Nom, Codi, Telefon, Web) " + "VALUES(" + idcentre
-								+ ", '" + nom + "', " + codi + ", " + telefon + ", '" + web + "');";
-						GDB.modificarRegistre(sentenciaSQL);
-						System.out.println("Alta realitzada correctament Amb ID.");
+						int e = 0;
+
+						System.out.println("--> " + idcentre + ", " + nom + ", " + codi + ", " + telefon + ", " + web);
+
+						e = cdao.altaCentreEntradaId(idcentre, nom, codi, telefon, web);
+						System.out.println("e --> " + e);
+						if (e != 0) {
+							System.out.println("Alta realitzada correctament Amb ID.");
+						} else {
+							System.out.println("Error Alta ID");
+						}
 
 					}
 					if (triar.equals("au")) {
-						sentenciaSQL = "INSERT INTO centre (Nom, Codi, Telefon, Web) " + "VALUES('" + nom + "', " + codi
-								+ ", " + telefon + ", '" + web + "');";
-						GDB.modificarRegistre(sentenciaSQL);
+						cdao.altaCentreAuto(nom, codi, telefon, web);
 						System.out.println("Alta realitzada correctament Sense ID.");
 
 					}

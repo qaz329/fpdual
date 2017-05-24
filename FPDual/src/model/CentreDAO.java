@@ -10,21 +10,44 @@ import controlador.GestorDB;
 
 public class CentreDAO {
 	GestorDB gestorDB;
-	public CentreDAO(){
+	String sentenciaSQL;
+
+	public CentreDAO() {
 		gestorDB = new GestorDB(Constants.SERVER, Constants.PORT, Constants.BD);
 	}
-	
-	public List<Integer> consultaIDCentre(){
-		String consultaSQL="SELECT id_centre FROM centre;";
+
+	public List<Integer> consultaIDCentre() {
+		String consultaSQL = "SELECT id_centre FROM centre;";
 		ResultSet rs;
 		List<Integer> dades = new ArrayList<Integer>();
 		try {
-			rs=gestorDB.consultaRegistres(consultaSQL);
-			while(rs.next()){
-				dades.add(rs.getInt("id_centre"));			}
+			rs = gestorDB.consultaRegistres(consultaSQL);
+			while (rs.next()) {
+				dades.add(rs.getInt("id_centre"));
+			}
 		} catch (SQLException e) {
-			System.out.println("Error consulta id centre "+e.toString());
+			System.out.println("Error consulta id centre " + e.toString());
 		}
 		return dades;
 	}
+
+	public int altaCentreEntradaId(int idcentre, String nom, int codi, int telefon, String web) {
+		System.out.println("2 --> " + idcentre + ", " + nom + ", " + codi + ", " + telefon + ", " + web);
+		int e = 0;
+		System.out.println("entrs1");
+		sentenciaSQL = "INSERT INTO centre (Id_centre, Nom, Codi, Telefon, Web) VALUES(" + idcentre + ", '" + nom
+				+ "', " + codi + ", " + telefon + ", '" + web + "');";
+		System.out.println("entrs2");
+		e = gestorDB.modificarRegistre(sentenciaSQL);
+		System.out.println("entrs3");
+		return e;
+
+	}
+
+	public void altaCentreAuto(String nom, int codi, int telefon, String web) {
+		sentenciaSQL = "INSERT INTO centre (Nom, Codi, Telefon, Web) " + "VALUES('" + nom + "', " + codi + ", "
+				+ telefon + ", '" + web + "');";
+		gestorDB.modificarRegistre(sentenciaSQL);
+	}
+
 }

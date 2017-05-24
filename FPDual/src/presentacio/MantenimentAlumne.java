@@ -161,11 +161,52 @@ public class MantenimentAlumne {
 		
 	}
 	
+	public void altraOperacio() {
+		String opc;
+		System.out.print("\nVols fer una altra operacio? (s/n): ");
+		opc = in.nextLine();
+		switch (opc) {
+		case "s":
+		case "S":
+		case "si":
+		case "Si":
+		case "SI":
+		case "sI":
+			System.out.println("------------------------------------------------------------------------");
+			this.menuAlumne();
+			break;
+		case "n":
+		case "N":
+		case "no":
+		case "No":
+		case "NO":
+		case "nO":
+			System.out.println("Fins una altra!");
+			break;
+		default:
+			System.out.println("OpciÃ³ incorrecta, sortint...");
+		}
+
+	}
+
+	
 	public void baixaAlumne(){
 		
 	}
 	
-	public void consultaAlumnes(){
-		
+	public void consultaAlumnes() {
+		Object[] obj = aDAO.consultaAlumnes();
+		int linies = obj.length / (obj.length / 2);
+		System.out.println("ID\tNOM\tCOGNOM\tINICI\t\tFINAL\t\tCENTRE\tID TUTOR");
+		System.out.println("------------------------------------------------------------------------");
+		for (int l = 0; l < obj.length; l++) {
+			if (l % 7 == 0 && l != 0) {
+				System.out.println();
+			}
+			System.out.print(obj[l] + "\t");
+		}
+		System.out.println("\n------------------------------------------------------------------------");
+		in.nextLine();
+		this.altraOperacio();
 	}
 }

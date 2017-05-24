@@ -18,8 +18,11 @@ public class TutorDAO {
 		g=new GestorDB(Constants.SERVER, Constants.PORT, Constants.BD);
 	}
 
-	public void altaTutor(String t){
-		consultaSQL="INSERT INTO tutor VALUES(Id_usuari,'"+t+"');";
+	public void altaTutor(String nif,String t){
+		consultaSQL="INSERT INTO tutor (id_usuari,tecnologia) "+
+				"SELECT Id_usuari,'"+t+"' "+
+				"FROM usuari "+
+				"WHERE NIF LIKE '"+nif+"'";
 		g.modificarRegistre(consultaSQL);
 		
 	}
@@ -34,14 +37,18 @@ public class TutorDAO {
 	}
 	
 	public List<String> consultaTutor(){
-		consultaSQL="SELECT * FROM tutor;";
-		ResultSet rs;
+		consultaSQL="SELECT t.Id_usuari,t.tecnologia,u.nom,u.nif FROM tutor AS t,usuari AS u WHERE t.id_usuari=u.id_usuari;";
+		ResultSet rs=null;
 		List<String> dades = new ArrayList<String>();
 		try {
 			rs=g.consultaRegistres(consultaSQL);
 			while(rs.next()){
-				dades.add(rs.getString("Id_usuari"));
-				dades.add(rs.getString("Tecnologia"));
+				String d="";
+				d+=rs.getInt("Id_usuari")+"\t";
+				d+=rs.getString("tecnologia")+"\t";
+				d+=rs.getString("Nom")+"\t";
+				d+=rs.getString("NIF");
+				dades.add(d);
 			}
 		} catch (SQLException e) {
 			System.out.println("Error consulta tutor "+e.toString());

@@ -14,16 +14,16 @@ import controlador.GestorDB;
 import model.ActivitatDAO;
 
 public class MantenimentActivitats {
-	GestorDB gestordb = new GestorDB(Constants.SERVER, Constants.PORT, Constants.BD);
-	int opcio;
-	String sentenciaSQL=null;
-	ActivitatDAO act = new ActivitatDAO();
-	Scanner sc = new Scanner(System.in);
+	private GestorDB gestordb = new GestorDB(Constants.SERVER, Constants.PORT, Constants.BD);
+	private int opcio;
+	private String sentenciaSQL=null;
+	private ActivitatDAO act = new ActivitatDAO();
+	private Scanner sc = new Scanner(System.in);
 	
 	public void Activitats() {
 		boolean sortir=false;
 		do{
-			System.out.println("\nMenu de manteniment d'Activitats");
+			System.out.println("\nMenu de manteniment d'Activitats\n");
 			System.out.println("\t1.- Alta");
 			System.out.println("\t2.- Baixa");
 			System.out.println("\t3.- Llistat");
@@ -61,6 +61,7 @@ public class MantenimentActivitats {
 		
 		for(i=0;i<Activitats.size();i++)
 			System.out.println(Activitats.get(i));
+		System.out.println("-------------------------------------");
 	}
 
 	private void Baixa() {
@@ -86,7 +87,7 @@ public class MantenimentActivitats {
 		try{
 			System.out.println("Introdueix el codi de l'activitat(Ex: Excursio->EXC1): ");
 			codi = br.readLine();
-			System.out.println("Introdueix una descripcio de l'activitat: ");
+			System.out.println("Introdueix una descripció de l'activitat: ");
 			desc = br.readLine();
 			act.altaActivitat(codi, desc);
 		}catch(IOException e){

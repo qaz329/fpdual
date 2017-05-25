@@ -134,7 +134,7 @@ public class MantenimentCentres {
 							continua = true;
 						}
 					} while (!continua);
-
+					//
 					do {
 						System.out.print("Entra el Codi del Centre: ");
 						comprova = br0.readLine();

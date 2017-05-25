@@ -14,6 +14,7 @@ import controlador.GestorDB;
 import model.ActivitatDAO;
 
 public class MantenimentActivitats {
+	
 	private GestorDB gestordb = new GestorDB(Constants.SERVER, Constants.PORT, Constants.BD);
 	private int opcio;
 	private String sentenciaSQL=null;

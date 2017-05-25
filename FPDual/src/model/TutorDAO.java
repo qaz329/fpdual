@@ -18,8 +18,12 @@ public class TutorDAO {
 		g=new GestorDB(Constants.SERVER, Constants.PORT, Constants.BD);
 	}
 	
-	public void altaTutor(String t){
-		consultaSQL="INSERT INTO tutor VALUES(Id_usuari,'"+t+"');";
+	public void altaTutor(String nif,String t){
+		consultaSQL="INSERT INTO tutor (Id_usuari,'"+t+"') "+
+					"SELECT Id_usuari,'"+t+"' "+
+					"FROM usuari "+
+					"WHERE NIF='"+nif+"';";
+						
 		g.modificarRegistre(consultaSQL);
 		
 	}

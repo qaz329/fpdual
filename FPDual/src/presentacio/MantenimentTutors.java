@@ -1,8 +1,12 @@
+
+
 package presentacio;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 import controlador.Constants;
 import controlador.GestorDB;
@@ -28,7 +32,7 @@ public class MantenimentTutors {
 		boolean sortir=false;
 		try {
 			do{
-				System.out.println("Quina opció vols realitzar? ");
+				System.out.println("\nQuina opció vols realitzar? ");
 				System.out.println("1.-Alta");
 				System.out.println("2.-Baixa");
 				System.out.println("3.-Llistat");
@@ -45,13 +49,16 @@ public class MantenimentTutors {
 					break;
 			
 				case 3:
+					llistat();
 					break;
 				
 				case 4:
 					sortir=true;
 					break;
+				default:
+					System.out.println("Tens que triar una de les 4 opcions.");
+					break;
 				}
-				
 			}while(!sortir);
 			
 		}catch (IOException e) {
@@ -79,6 +86,15 @@ public class MantenimentTutors {
 				}else if(!Character.isLetter(nif.charAt(8))){
 					System.out.println("NIF no vàlid");
 					correcte=false;
+				}else{
+					for(int i=0;i<8;i++){
+						if(!Character.isDigit(nif.charAt(i))){
+							correcte=false;
+						}
+					}
+					if(correcte==false){
+						System.out.println("NIF no vàlid");
+					}
 				}
 			}while(!correcte);
 			System.out.print("Introdueix la password per a l'usuari: ");
@@ -101,8 +117,7 @@ public class MantenimentTutors {
 			
 			System.out.println("Introdueix la tecnologia del tutor a afegir: ");
 			tecno=br.readLine();
-			
-			t.altaTutor(tecno);
+			t.altaTutor(nif,tecno);
 			
 		} catch (IOException e) {
 		System.out.println("Error Alta "+e.toString());
@@ -110,7 +125,30 @@ public class MantenimentTutors {
 	}
 	
 	public void baixa(){
-		System.out.println("");
+		String nif;
+		int id;
+		try {
+			System.out.println("Introdueix el NIF del tutor a donar de baixa: ");
+			nif=br.readLine();
+			id=u.consultaID(nif);
+			t.baixaTutor(id);
+			System.out.println("Baixa realitzada");
+		} catch (IOException e) {
+			System.out.println("Error baixa");
+		}
+	}
+	
+	public void llistat(){
+		List<String>llista=new ArrayList<String>();
+		llista=t.consultaTutor();
+		System.out.println("ID\tTecno\tNom\tNIF");
+		System.out.println("----------------------------------------");
+		for(int i=0;i<llista.size();i++){
+			System.out.println(llista.get(i));
+		}
+		//System.out.println(llista);
 	}
 	
 }
+
+

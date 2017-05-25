@@ -57,6 +57,7 @@ public class MantenimentCentres {
 			case 3:
 				correcte = true;
 				opcio3();
+				FormulariCentres();
 				break;
 
 			case 4:
@@ -267,6 +268,8 @@ public class MantenimentCentres {
 		rs = cdao.consultarCentres();
 		try {
 			System.out.println("id \t\tNom \t\tCodi \t\tTelefon \t\tWeb");
+			System.out.println(
+					"--------------------------------------------------------------------------------------------");
 			while (rs.next()) {
 				for (int i = 1; i <= 5; i++) {
 					if (i > 1)
@@ -276,6 +279,8 @@ public class MantenimentCentres {
 				}
 				System.out.println("");
 			}
+			System.out.println(
+					"--------------------------------------------------------------------------------------------");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

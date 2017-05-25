@@ -24,7 +24,6 @@ public class GestorDB {
 	
 	public int modificarRegistre(String consultaSQL) {
 		int numeroFilesAfectades = 0;
-
 		try {
 			stmt = conn.createStatement(); // Statement permet executar la
 											// consulta SQL

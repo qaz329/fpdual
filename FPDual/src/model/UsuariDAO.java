@@ -73,4 +73,8 @@ public class UsuariDAO {
 		}
 		return fila.toArray();
 	}
+
+	public void tancarConn() {
+		gestorDB.tancarConnexio();
+	}
 }

@@ -19,36 +19,36 @@ public class TutorDAO {
 	}
 	
 	public void altaTutor(String nif,String t){
-		consultaSQL="INSERT INTO tutor (Id_usuari,'"+t+"') "+
+		consultaSQL="INSERT INTO tutor (Id_usuari,Tecnologia) "+
 					"SELECT Id_usuari,'"+t+"' "+
 					"FROM usuari "+
 					"WHERE NIF='"+nif+"';";
-						
 		g.modificarRegistre(consultaSQL);
 		
 	}
 	
 	public void baixaTutor(int id){
-		try {
-			consultaSQL="DELETE FROM tutor WHERE id_usuari="+id+";";
-			stmt.addBatch(consultaSQL);
-			consultaSQL="DELETE FROM usuari WHERE id_usuari="+id+";";
-			stmt.addBatch(consultaSQL);
-			stmt.executeBatch();
-		} catch (SQLException e) {
-			System.out.println("Error baixa tutor "+e.toString());
-		}
+		
+		consultaSQL="DELETE FROM tutor WHERE id_usuari="+id+";";
+		g.modificarRegistre(consultaSQL);
+		consultaSQL="DELETE FROM usuari WHERE id_usuari="+id+";";
+		g.modificarRegistre(consultaSQL);
+		
 	}
 	
 	public List<String> consultaTutor(){
-		consultaSQL="SELECT * FROM tutor;";
+		consultaSQL="SELECT t.Id_usuari,t.tecnologia,u.nom,u.NIF FROM tutor AS t,usuari AS u WHERE t.Id_usuari=u.Id_usuari;";
 		ResultSet rs;
 		List<String> dades = new ArrayList<String>();
 		try {
 			rs=g.consultaRegistres(consultaSQL);
 			while(rs.next()){
-				dades.add(rs.getString("Id_usuari"));
-				dades.add(rs.getString("Tecnologia"));
+				String d="";
+				d+=rs.getInt("Id_usuari")+"\t";
+				d+=rs.getString("Tecnologia")+"\t";
+				d+=rs.getString("Nom")+"\t";
+				d+=rs.getString("NIF");
+				dades.add(d);
 			}
 		} catch (SQLException e) {
 			System.out.println("Error consulta tutor "+e.toString());

@@ -20,6 +20,7 @@ public class GestorDB {
 		}catch(Exception e){
 			System.out.println("No puc instanciar el driver MySQL !");
 		}
+		this.tancarConnexio();
 	}
 	
 	public int modificarRegistre(String consultaSQL) {
@@ -33,6 +34,7 @@ public class GestorDB {
 			// e.printStackTrace();
 			System.out.printf("La consulta no s'ha pogut executar", e);
 		}
+		this.tancarConnexio();
 		return numeroFilesAfectades;
 	}
 	
@@ -44,6 +46,7 @@ public class GestorDB {
 		}catch(Exception e){
 			System.out.println("Error al consultar registres");
 		}
+		this.tancarConnexio();
 		return rs;
 	}
 	

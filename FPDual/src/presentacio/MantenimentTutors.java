@@ -54,6 +54,7 @@ public class MantenimentTutors {
 				
 				case 4:
 					sortir=true;
+					System.out.println("Adeu!");
 					break;
 				default:
 					System.out.println("Tens que triar una de les 4 opcions.");
@@ -113,11 +114,13 @@ public class MantenimentTutors {
 			mail=br.readLine();
 			
 			u.altaUsuari(nif, pass, nom, pCog, sCog, mail);
+			u.tancarConn();
 			System.out.println("Alta usuari realitzada.");
 			
 			System.out.println("Introdueix la tecnologia del tutor a afegir: ");
 			tecno=br.readLine();
 			t.altaTutor(nif,tecno);
+			t.tancarConn();
 			
 		} catch (IOException e) {
 		System.out.println("Error Alta "+e.toString());
@@ -132,6 +135,7 @@ public class MantenimentTutors {
 			nif=br.readLine();
 			id=u.consultaID(nif);
 			t.baixaTutor(id);
+			t.tancarConn();
 			System.out.println("Baixa realitzada");
 		} catch (IOException e) {
 			System.out.println("Error baixa");
@@ -141,6 +145,7 @@ public class MantenimentTutors {
 	public void llistat(){
 		List<String>llista=new ArrayList<String>();
 		llista=t.consultaTutor();
+		t.tancarConn();
 		System.out.println("ID\tTecno\tNom\tNIF");
 		System.out.println("----------------------------------------");
 		for(int i=0;i<llista.size();i++){

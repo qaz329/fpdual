@@ -51,6 +51,7 @@ public class Main {
 		MantenimentCentres MC = new MantenimentCentres();
 		MantenimentAlumne ma = new MantenimentAlumne();
 		MantenimentTutors mt = new MantenimentTutors();
+		MantenimentActivitats mac = new MantenimentActivitats();
 
 		int opcio = 0;
 
@@ -79,6 +80,7 @@ public class Main {
 				break;
 			case 4:
 				System.out.println("Opcio 4 triada");
+				mac.Activitats();
 				break;
 
 			case 5:

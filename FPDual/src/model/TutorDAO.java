@@ -69,4 +69,8 @@ public class TutorDAO {
 		}
 		return dades;
 	}
+	
+	public void tancarConn(){
+		g.tancarConnexio();
+	}
 }

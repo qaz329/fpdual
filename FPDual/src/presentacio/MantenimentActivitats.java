@@ -29,7 +29,7 @@ public class MantenimentActivitats {
 			System.out.println("\t2.- Baixa");
 			System.out.println("\t3.- Llistat");
 			System.out.println("\t4.- Sortir");
-			System.out.print("\nSelecciona una opció:");
+			System.out.print("\nSelecciona una opció: ");
 			
 			opcio = sc.nextInt();
 			switch(opcio){
@@ -82,7 +82,8 @@ public class MantenimentActivitats {
 	private void Alta() {
 		String codi="";
 		String desc="";
-		String id="";
+		int id=0;
+		List<Integer> dades = new ArrayList<Integer>();
 		InputStreamReader isr = new InputStreamReader(System.in);
 		BufferedReader br = new BufferedReader(isr);
 		try{
@@ -91,6 +92,9 @@ public class MantenimentActivitats {
 			System.out.println("Introdueix una descripció de l'activitat: ");
 			desc = br.readLine();
 			act.altaActivitat(codi, desc);
+			dades=act.otorgarID();
+			id=dades.get(0);
+			System.out.println("ID otorgat: "+id);
 		}catch(IOException e){
 			e.printStackTrace();
 		}

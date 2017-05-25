@@ -45,6 +45,20 @@ public class ActivitatDAO {
 		return dades;
 	}
 	
+	public List<Integer> otorgarID(){
+		String sentencia = "SELECT MAX(id_activitat) FROM activitat";
+		ResultSet rs;
+		List<Integer> dades = new ArrayList<Integer>();
+		try{
+			rs = gestorDB.consultaRegistres(sentencia);
+			while(rs.next())
+				dades.add(rs.getInt(1));
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return dades;
+	}
+	
 	public List<String> llistaActivitat(){
 		ResultSet rs;
 		List<String> dades = new ArrayList<String>();

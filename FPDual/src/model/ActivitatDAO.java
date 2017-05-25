@@ -60,7 +60,7 @@ public class ActivitatDAO {
 				dades.add(s);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.err.println("Error llistat");
 		}
 		return dades;
 	} 

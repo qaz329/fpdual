@@ -34,7 +34,7 @@ public class MantenimentCentres {
 			System.out.println("\t2.- Baixa");
 			System.out.println("\t3.- Llistat");
 			System.out.println("\t4.- Sortir");
-			System.out.println("Selecciona una opcio:");
+			System.out.println("Selecciona una opció:");
 			try {
 				opcio = Integer.parseInt(br0.readLine());
 			} catch (NumberFormatException e) {
@@ -62,18 +62,18 @@ public class MantenimentCentres {
 				break;
 
 			case 4:
-				System.out.println("Tornan al Menu principal..");
+				System.out.println("Tornant al Menu principal..");
 				sortir = 1;
 				cdao.tancarCon();
 				break;
 
 			default:
-				System.out.println("Tens que triar una de les 4 opcions.");
+				System.out.println("Has de triar una de les 4 opcions.");
 				correcte = false;
 				break;
 			}
 			if (sortir == 0) {
-				System.out.println("Vols realitzar alguna altra operacio? 'si'/'no'");
+				System.out.println("Vols realitzar alguna altra operació? 'si'/'no'");
 
 				try {
 					operacio = br0.readLine();
@@ -81,7 +81,7 @@ public class MantenimentCentres {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				System.out.println("Altra operacio : " + operacio);
+				System.out.println("Altra operació : " + operacio);
 			}
 			if (sortir == 1) {
 				Main main = new Main();
@@ -132,7 +132,7 @@ public class MantenimentCentres {
 						nom = br0.readLine();
 						if (nom == null || nom == "" || nom.equals("") || nom.equals(null)) {
 							continua = false;
-							System.out.println("Tens que introduir un Nom...!");
+							System.out.println("Has d'introduir un Nom...!");
 						} else {
 							continua = true;
 						}
@@ -145,12 +145,12 @@ public class MantenimentCentres {
 						if (enters) {
 							codi = Integer.parseInt(comprova);
 						} else {
-							System.out.println("Entra nomes Numeros Enters.");
+							System.out.println("Entra només Numeros Enters.");
 						}
 					} while (!enters);
 
 					do {
-						System.out.print("Entra el Telefon del Centre: ");
+						System.out.print("Entra el Telèfon del Centre: ");
 						comprova = br0.readLine();
 						enters = MantenimentCentres.isNumeric(comprova);
 						if (enters) {
@@ -166,7 +166,7 @@ public class MantenimentCentres {
 						if (web != null) {
 							correcte = true;
 						} else {
-							System.out.println("Tens que introduir una web...!");
+							System.out.println("Has d'introduir una web...!");
 						}
 					} while (!correcte);
 
@@ -189,7 +189,7 @@ public class MantenimentCentres {
 					}
 				} else {
 					System.out.println();
-					System.out.println("La ID que a introduit ja existeix, tria'n una de diferent.");
+					System.out.println("La ID que ha introduit ja existeix, tria'n una de diferent.");
 					System.out.println();
 					hies = 0;
 				}
@@ -206,7 +206,7 @@ public class MantenimentCentres {
 
 	private void opcio2() {
 		String id = null;
-		System.out.println("Opcio 'BAIXA'");
+		System.out.println("Opció 'BAIXA'");
 		ResultSet retorn;
 		boolean correcte = false;
 		String comprova = "";
@@ -248,7 +248,7 @@ public class MantenimentCentres {
 					if (enters) {
 						id = comprova;
 					} else {
-						System.out.println("Nomes pots entrar Numeros Enters.");
+						System.out.println("Només pots entrar Numeros Enters.");
 					}
 				} while (!enters);
 
@@ -272,7 +272,7 @@ public class MantenimentCentres {
 			} else {
 				int e = 0;
 				correcte = true;
-				System.out.println("Les dades entrades son: ");
+				System.out.println("Les dades entrades són: ");
 				System.out.println("Id: " + id);
 				e = cdao.donarBaixa(id);
 				if (e == 1) {
@@ -289,7 +289,7 @@ public class MantenimentCentres {
 
 	private void opcio3() {
 		ResultSet rs;
-		System.out.println("Opcio 'LLISTAT'");
+		System.out.println("Opció 'LLISTAT'");
 
 		rs = cdao.consultarCentres();
 		try {

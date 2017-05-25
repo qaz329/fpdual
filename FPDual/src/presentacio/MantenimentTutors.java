@@ -32,7 +32,7 @@ public class MantenimentTutors {
 		boolean sortir=false;
 		try {
 			do{
-				System.out.println("\nQuina opciÛ vols realitzar? ");
+				System.out.println("\nQuina opci√≥ vols realitzar? ");
 				System.out.println("1.-Alta");
 				System.out.println("2.-Baixa");
 				System.out.println("3.-Llistat");
@@ -57,13 +57,13 @@ public class MantenimentTutors {
 					System.out.println("Adeu!");
 					break;
 				default:
-					System.out.println("Tens que triar una de les 4 opcions.");
+					System.out.println("Has de triar una de les 4 opcions.");
 					break;
 				}
 			}while(!sortir);
 			
 		}catch (IOException e) {
-		System.out.println("Error introduir opcio "+e.toString());
+		System.out.println("Error introduir opci√≥ "+e.toString());
 		}
 	}
 	
@@ -82,10 +82,10 @@ public class MantenimentTutors {
 				nif=br.readLine();
 				correcte=true;
 				if(nif.length()<9 || nif.length()>9){
-					System.out.println("NIF no v‡lid");
+					System.out.println("NIF no v√†lid");
 					correcte=false;
 				}else if(!Character.isLetter(nif.charAt(8))){
-					System.out.println("NIF no v‡lid");
+					System.out.println("NIF no v√†lid");
 					correcte=false;
 				}else{
 					for(int i=0;i<8;i++){
@@ -94,7 +94,7 @@ public class MantenimentTutors {
 						}
 					}
 					if(correcte==false){
-						System.out.println("NIF no v‡lid");
+						System.out.println("NIF no v√†lid");
 					}
 				}
 			}while(!correcte);

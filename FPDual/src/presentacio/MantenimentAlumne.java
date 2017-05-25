@@ -164,7 +164,7 @@ public class MantenimentAlumne {
 	
 	public void altraOperacio() {
 		String opc;
-		System.out.print("\nVols fer una altra operacio? (s/n): ");
+		System.out.print("\nVols fer una altra operació? (s/n): ");
 		opc = in.nextLine();
 		switch (opc) {
 		case "s":case "S":case "si":case "Si":case "SI":case "sI":

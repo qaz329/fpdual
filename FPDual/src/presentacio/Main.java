@@ -56,40 +56,40 @@ public class Main {
 		int opcio = 0;
 
 		System.out.println("1.- Manteniment de Centres.'Sisco'");
-		System.out.println("2.- Manteniment de Alumnes.'Joan'");
+		System.out.println("2.- Manteniment d'Alumnes.'Joan'");
 		System.out.println("3.- Manteniment de Tutors.'Sergi'");
-		System.out.println("4.- Manteniment de Activitats.'Thiago'");
+		System.out.println("4.- Manteniment d'Activitats.'Thiago'");
 		System.out.println("5.- Tancar Aplicacio");
 		do {
 			opcio = in.nextInt();
 
 			switch (opcio) {
 			case 1:
-				System.out.println("Opcio 1 triada");
+				System.out.println("Opció 1 triada");
 				MC.FormulariCentres();
 				break;
 			case 2:
-				System.out.println("Opcio 2 triada");
+				System.out.println("Opció 2 triada");
 				in.nextLine();
 
 				ma.menuAlumne();
 				break;
 			case 3:
-				System.out.println("Opcio 3 triada");
+				System.out.println("Opció 3 triada");
 				mt.opcions();
 				break;
 			case 4:
-				System.out.println("Opcio 4 triada");
+				System.out.println("Opció 4 triada");
 				mac.Activitats();
 				break;
 
 			case 5:
-				System.out.println("Opcio 5 triada. Tancant Aplicacio...");
+				System.out.println("Opció 5 triada. Tancant l'Aplicació...");
 				correcte2 = true;
 				break;
 
 			default:
-				System.out.println("Tens que triar una de les 5 opcions.");
+				System.out.println("Has de triar una de les 5 opcions.");
 				break;
 			}
 		} while (correcte2 == false);

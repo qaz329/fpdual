@@ -70,4 +70,8 @@ public class AlumneDAO {
 		}
 		return dades;
 	}
+	
+	public void tancarConn(){
+		gestorDB.tancarConnexio();
+	}
 }

@@ -156,7 +156,9 @@ public class MantenimentAlumne {
 		idtutor = Integer.parseInt(id1);
 				
 		uDAO.altaUsuari(nif, pw, cognom2, cognom1, cognom2, mail);
+		uDAO.tancarConn();
 		aDAO.altaAlumne(inici, fi, idtutor, idcentre, nif);
+		aDAO.tancarConn();
 		
 		
 	}
@@ -191,6 +193,8 @@ public class MantenimentAlumne {
 		id = in.nextInt();
 		aDAO.baixaAlumne(id);
 		in.nextLine();
+		aDAO.tancarConn();
+		
 		this.altraOperacio();
 	}
 
@@ -208,6 +212,7 @@ public class MantenimentAlumne {
 		}
 		System.out.println("\n------------------------------------------------------------------------");
 		in.nextLine();
+		aDAO.tancarConn();
 		this.altraOperacio();
 	}
 }

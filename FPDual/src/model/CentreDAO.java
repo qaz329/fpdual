@@ -18,7 +18,6 @@ public class CentreDAO {
 
 	public List<Integer> consultaIDCentre() {
 		String consultaSQL = "SELECT Id_centre FROM centre;";
-
 		ResultSet rs;
 		List<Integer> dades = new ArrayList<Integer>();
 		try {
@@ -108,6 +107,10 @@ public class CentreDAO {
 	public ResultSet consultarCentres() {
 		String consultaSQL = "SELECT * FROM centre";
 		return gestorDB.consultaRegistres(consultaSQL);
+	}
+
+	public void tancarCon() {
+		gestorDB.tancarConnexio();
 	}
 
 }

@@ -146,7 +146,6 @@ public class MantenimentTutors {
 		for(int i=0;i<llista.size();i++){
 			System.out.println(llista.get(i));
 		}
-		//System.out.println(llista);
 	}
 	
 }

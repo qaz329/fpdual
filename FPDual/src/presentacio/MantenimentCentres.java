@@ -122,10 +122,18 @@ public class MantenimentCentres {
 				}
 
 				if (i == 0) {
+					boolean continua = false;
 					hies = 1;
-					System.out.print("Entra El Nom del Centre: ");
-
-					nom = br0.readLine();
+					do {
+						System.out.print("Entra El Nom del Centre: ");
+						nom = br0.readLine();
+						if (nom == null || nom == "" || nom.equals("") || nom.equals(null)) {
+							continua = false;
+							System.out.println("Tens que introduir un Nom...!");
+						} else {
+							continua = true;
+						}
+					} while (!continua);
 
 					do {
 						System.out.print("Entra el Codi del Centre: ");
@@ -134,7 +142,7 @@ public class MantenimentCentres {
 						if (enters) {
 							codi = Integer.parseInt(comprova);
 						} else {
-							System.out.println("Nomes pots entrar Numeros Enters.");
+							System.out.println("Entra nomes Numeros Enters.");
 						}
 					} while (!enters);
 
@@ -148,11 +156,16 @@ public class MantenimentCentres {
 							System.out.println("Nomes pots entrar Numeros Enters.");
 						}
 					} while (!enters);
+
 					System.out.print("Entra la Web del Centre: ");
-
-					web = br0.readLine();
-
-					correcte = true;
+					do {
+						web = br0.readLine();
+						if (web != null) {
+							correcte = true;
+						} else {
+							System.out.println("Tens que introduir una web...!");
+						}
+					} while (!correcte);
 
 					if (triar.equals("en")) {
 						int e = 0;

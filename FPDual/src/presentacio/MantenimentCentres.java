@@ -298,7 +298,6 @@ public class MantenimentCentres {
 			System.out.println(
 					"--------------------------------------------------------------------------------------------");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

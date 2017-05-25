@@ -86,11 +86,10 @@ public class CentreDAO {
 		try {
 			retorn = gestorDB.consultaRegistres(consultarid);
 
-			while (retorn.next()) { // ERROR NULL
+			while (retorn.next()) {
 				i++;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

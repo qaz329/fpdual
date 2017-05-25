@@ -39,6 +39,23 @@ public class UsuariDAO {
 		
 	}
 	
+	
+	public int consultaID(String nif){
+		int id = 0;
+		try{
+			
+			ResultSet rs=null;
+			String consultaSQL="SELECT Id_usuari FROM usuari WHERE nif='"+nif+"';";
+			rs=gestorDB.consultaRegistres(consultaSQL);
+			rs.next();
+			id=rs.getInt("Id_usuari");
+		}catch(SQLException e){
+			System.out.println("Error consulta ID");
+		}
+		return id;
+	}
+	
+
 	public Object[] consultaNifs(String nif){
 		ResultSet rs = null;
 		String consultaSQL = "SELECT NIF FROM usuari";

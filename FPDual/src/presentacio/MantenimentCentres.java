@@ -6,11 +6,12 @@ import java.io.InputStreamReader;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import controlador.Constants;
+import controlador.GestorDB;
 import model.CentreDAO;
 
 public class MantenimentCentres {
-	// GestorDB GDB = new GestorDB(Constants.SERVER, Constants.PORT,
-	// Constants.BD);
+	GestorDB GDB = new GestorDB(Constants.SERVER, Constants.PORT, Constants.BD);
 	CentreDAO cdao = new CentreDAO();
 
 	boolean correcte = true;
@@ -63,6 +64,7 @@ public class MantenimentCentres {
 			case 4:
 				System.out.println("Tornan al Menu principal..");
 				sortir = 1;
+				cdao.tancarCon();
 				break;
 
 			default:
@@ -85,6 +87,7 @@ public class MantenimentCentres {
 				Main main = new Main();
 				main.opcionsCase();
 				operacio = "no";
+
 			}
 		} while (operacio.equals("si"));
 
@@ -295,7 +298,6 @@ public class MantenimentCentres {
 			System.out.println(
 					"--------------------------------------------------------------------------------------------");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

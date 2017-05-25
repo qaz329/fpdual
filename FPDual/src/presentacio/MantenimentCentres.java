@@ -209,6 +209,8 @@ public class MantenimentCentres {
 		System.out.println("Opcio 'BAIXA'");
 		ResultSet retorn;
 		boolean correcte = false;
+		String comprova = "";
+		boolean enters = false;
 		int cont = 0;
 
 		do {
@@ -240,10 +242,18 @@ public class MantenimentCentres {
 				System.out.println();
 
 				System.out.print("Entra la ID del Centre a fer la BAIXA: ");
-				id = br0.readLine();
+				do {
+					comprova = br0.readLine();
+					enters = MantenimentCentres.isNumeric(comprova);
+					if (enters) {
+						id = comprova;
+					} else {
+						System.out.println("Nomes pots entrar Numeros Enters.");
+					}
+				} while (!enters);
 
 			} catch (NumberFormatException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

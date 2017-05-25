@@ -23,7 +23,6 @@ public class TutorDAO {
 					"SELECT Id_usuari,'"+t+"' "+
 					"FROM usuari "+
 					"WHERE NIF='"+nif+"';";
-						
 		g.modificarRegistre(consultaSQL);
 		
 	}

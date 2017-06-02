@@ -3,8 +3,11 @@ package presentacio;
 import java.util.List;
 import java.util.Scanner;
 
+import model.Alumne;
 import model.AlumneDAO;
+import model.Centre;
 import model.CentreDAO;
+import model.Tutor;
 import model.TutorDAO;
 import model.Usuari;
 import model.UsuariDAO;
@@ -38,7 +41,16 @@ public class MantenimentAlumne {
 	}
 	
 	public void altaAlumne(){
-		String nif, password, nom, cognom1, cognom2, alta, mail, inici, fi, id1, id2;
+		String nif;
+		String password;
+		String nom;
+		String cognom1;
+		String cognom2;
+		String mail;
+		String inici;
+		String fi;
+		String id1;
+		String id2;
 		List<Integer> llistaTutors = tDAO.consultaIDTutor();
 		List<Integer> llistaCentres = cDAO.consultaIDCentre();
 
@@ -157,9 +169,14 @@ public class MantenimentAlumne {
 		idtutor = Integer.parseInt(id1);
 		
 		Usuari usuari = new Usuari(nif, password, nom, cognom1, cognom2, mail);
-				
+		Centre centre = new Centre();
+		centre.setIdCentre(idcentre);
+		Tutor tutor = new Tutor();
+		tutor.setId_usuari(idtutor);
+		Alumne alumne = new Alumne(usuari, inici, fi, centre, tutor);
+		
 		uDAO.altaUsuari(usuari);
-		aDAO.altaAlumne(inici, fi, idtutor, idcentre, nif);
+		aDAO.altaAlumne(alumne, inici, fi, idtutor, idcentre, nif);
 		this.altraOperacio();
 		
 		

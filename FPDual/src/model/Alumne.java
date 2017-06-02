@@ -5,15 +5,15 @@ public class Alumne extends Usuari {
 	private int idAlumne;
 	private String dataInici;
 	private String dataFi;
-	private Centre centre;
-	private Tutor tutor;
+	Centre centre;
+	Tutor tutor;
 		
 	public Alumne() {
 		super();
 	}
 	
-	public Alumne(int idAlumne, String dataInici, String dataFi, Centre centre, Tutor tutor) {
-		super();
+	public Alumne(Usuari u, String dataInici, String dataFi, Centre centre, Tutor tutor) {
+		super.setIdUsuari(u.getIdUsuari());
 		this.idAlumne = idAlumne;
 		this.dataInici = dataInici;
 		this.dataFi = dataFi;
@@ -26,6 +26,9 @@ public class Alumne extends Usuari {
 	}
 	public void setIdAlumne(int idAlumne) {
 		this.idAlumne = idAlumne;
+	}
+	public int getIdUsuari(){
+		return super.getIdUsuari();
 	}
 	public String getDataInici() {
 		return dataInici;

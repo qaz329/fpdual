@@ -15,10 +15,10 @@ public class AlumneDAO {
 		gestorDB = new GestorDB(Constants.SERVER, Constants.PORT, Constants.BD);
 	}
 	
-	public void altaAlumne(String inici, String fi, int id_tutor, int id_centre, String nif){
+	public void altaAlumne(Alumne alumne, String inici, String fi, int id_tutor, int id_centre, String nif){
 
 		String consultaSQL = "INSERT INTO alumne(id_usuari,data_inici,data_fi,id_centre,id_tutor) "
-				+ "SELECT id_usuari, '"+inici+"','"+fi+"', "+id_centre+", "+id_tutor+" "
+				+ "SELECT id_usuari, '"+alumne.getDataInici()+"','"+alumne.getDataFi()+"', "+alumne.centre.getIdCentre()+", "+alumne.tutor.getId_usuari()+" "
 				+ "FROM usuari WHERE NIF LIKE '"+nif+"'";
 		gestorDB.modificarRegistre(consultaSQL);
 		

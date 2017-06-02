@@ -3,11 +3,9 @@ package model;
 public class Tutor extends Usuari{
 	int id_usuari;
 	String tecnologia;
-	
+	Usuari u=new Usuari();
 	public Tutor(int id_usuari, String tecnologia) {
-		super();
-		Usuari u=new Usuari();
-		this.id_usuari = u.getIdUsuari();
+		super.setIdUsuari(u.getIdUsuari());
 		this.tecnologia = tecnologia;
 	}
 	
@@ -54,7 +52,7 @@ public class Tutor extends Usuari{
 
 
 	public int getId_usuari() {
-		return id_usuari;
+		return super.getIdUsuari();
 	}
 	public void setId_usuari(int id_usuari) {
 		this.id_usuari = id_usuari;

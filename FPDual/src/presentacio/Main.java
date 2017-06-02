@@ -18,7 +18,7 @@ public class Main {
 			if (nif.length() == 9) {
 				int i = 0;
 				Object[] obj = uDAO.consultaNifs(nif);
-				while (correcte == 0 && i < obj.length) {
+				while (0 == correcte && i < obj.length) {
 					if (nif.equals(obj[i])) {
 						System.out.print("Password: ");
 						pw = in.nextLine();
@@ -92,7 +92,6 @@ public class Main {
 				break;
 			}
 		} while (correcte2 == false);
-		// GDB.tancarConnexio();
 
 	}
 

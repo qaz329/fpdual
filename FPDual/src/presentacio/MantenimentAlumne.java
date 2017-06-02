@@ -176,7 +176,7 @@ public class MantenimentAlumne {
 		Alumne alumne = new Alumne(usuari, inici, fi, centre, tutor);
 		
 		uDAO.altaUsuari(usuari);
-		aDAO.altaAlumne(alumne, inici, fi, idtutor, idcentre, nif);
+		aDAO.altaAlumne(alumne);
 		this.altraOperacio();
 		
 		

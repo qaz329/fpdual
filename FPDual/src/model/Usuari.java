@@ -37,7 +37,7 @@ public class Usuari {
 		return NIF;
 	}
 	public void setNIF(String NIF) {
-		NIF = NIF;
+		this.NIF = NIF;
 	}
 	public String getPasswd() {
 		return passwd;

@@ -38,7 +38,7 @@ public class MantenimentAlumne {
 	}
 	
 	public void altaAlumne(){
-		String nif, pw, nom, cognom1, cognom2, alta, mail, inici, fi, id1, id2;
+		String nif, password, nom, cognom1, cognom2, alta, mail, inici, fi, id1, id2;
 		List<Integer> llistaTutors = tDAO.consultaIDTutor();
 		List<Integer> llistaCentres = cDAO.consultaIDCentre();
 
@@ -54,7 +54,7 @@ public class MantenimentAlumne {
 		System.out.print("Segon cognom: ");
 		cognom2 = in.nextLine();
 		System.out.print("Contrassenya: ");
-		pw = in.nextLine();
+		password = in.nextLine();
 		System.out.print("e-Mail: ");
 		mail = in.nextLine();
 		System.out.print("ID del tutor "+llistaTutors+": ");
@@ -156,9 +156,9 @@ public class MantenimentAlumne {
 		idcentre = Integer.parseInt(id2);
 		idtutor = Integer.parseInt(id1);
 		
-		Usuari usuari = new Usuari();
+		Usuari usuari = new Usuari(nif, password, nom, cognom1, cognom2, mail);
 				
-		uDAO.altaUsuari(nif, pw, cognom2, cognom1, cognom2, mail);
+		uDAO.altaUsuari(usuari);
 		aDAO.altaAlumne(inici, fi, idtutor, idcentre, nif);
 		this.altraOperacio();
 		

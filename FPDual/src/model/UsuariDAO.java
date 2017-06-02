@@ -33,8 +33,8 @@ public class UsuariDAO {
 		}
 	}
 	
-	public void altaUsuari(String nif, String pw, String nom, String c1, String c2, String mail){
-		String consultaSQL="INSERT INTO Usuari VALUES(id_usuari,'"+nif+"','"+pw+"','"+nom+"','"+c1+"','"+c2+"',NOW(),'"+mail+"')";
+	public void altaUsuari(Usuari usuari){
+		String consultaSQL="INSERT INTO Usuari VALUES(id_usuari,'"+usuari.getNIF()+"','"+usuari.getPasswd()+"','"+usuari.getNom()+"','"+usuari.getCognom1()+"','"+usuari.getCognom2()+"',NOW(),'"+usuari.getMail()+"')";
 		gestorDB.modificarRegistre(consultaSQL);
 		
 	}

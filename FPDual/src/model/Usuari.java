@@ -13,15 +13,14 @@ public class Usuari {
 	
 	public Usuari() {}
 	
-	public Usuari(String NIF, String passwd, String nom, String cognom1, String cognom2, String dataAlta,
+	public Usuari(String NIF, String passwd, String nom, String cognom1, String cognom2,
 			String mail) {
 		super();
-		NIF = NIF;
+		this.NIF = NIF;
 		this.passwd = passwd;
 		this.nom = nom;
 		this.cognom1 = cognom1;
 		this.cognom2 = cognom2;
-		this.dataAlta = dataAlta;
 		this.mail = mail;
 	}
 	

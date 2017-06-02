@@ -24,7 +24,6 @@ public class Usuari {
 		this.mail = mail;
 	}
 	
-	
 	// GETTERS & SETTERS
 	public int getIdUsuari() {
 		return idUsuari;

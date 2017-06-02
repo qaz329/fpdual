@@ -13,11 +13,10 @@ public class Usuari {
 	
 	public Usuari() {}
 	
-	public Usuari(int idUsuari, String nIF, String passwd, String nom, String cognom1, String cognom2, String dataAlta,
+	public Usuari(String NIF, String passwd, String nom, String cognom1, String cognom2, String dataAlta,
 			String mail) {
 		super();
-		this.idUsuari = idUsuari;
-		NIF = nIF;
+		NIF = NIF;
 		this.passwd = passwd;
 		this.nom = nom;
 		this.cognom1 = cognom1;
@@ -37,8 +36,8 @@ public class Usuari {
 	public String getNIF() {
 		return NIF;
 	}
-	public void setNIF(String nIF) {
-		NIF = nIF;
+	public void setNIF(String NIF) {
+		NIF = NIF;
 	}
 	public String getPasswd() {
 		return passwd;

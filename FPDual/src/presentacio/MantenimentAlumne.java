@@ -6,6 +6,7 @@ import java.util.Scanner;
 import model.AlumneDAO;
 import model.CentreDAO;
 import model.TutorDAO;
+import model.Usuari;
 import model.UsuariDAO;
 
 public class MantenimentAlumne {
@@ -154,6 +155,8 @@ public class MantenimentAlumne {
 		
 		idcentre = Integer.parseInt(id2);
 		idtutor = Integer.parseInt(id1);
+		
+		Usuari usuari = new Usuari();
 				
 		uDAO.altaUsuari(nif, pw, cognom2, cognom1, cognom2, mail);
 		aDAO.altaAlumne(inici, fi, idtutor, idcentre, nif);

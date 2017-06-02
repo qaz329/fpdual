@@ -48,10 +48,10 @@ public class Main {
 
 	public static void opcionsCase() {
 		boolean correcte2 = true;
-		MantenimentCentres MC = new MantenimentCentres();
-		MantenimentAlumne ma = new MantenimentAlumne();
-		MantenimentTutors mt = new MantenimentTutors();
-		MantenimentActivitats mac = new MantenimentActivitats();
+		MantenimentCentres mantenimentCentres = new MantenimentCentres();
+		MantenimentAlumne mantenimentAlumne = new MantenimentAlumne();
+		MantenimentTutors mantenimentTutors = new MantenimentTutors();
+		MantenimentActivitats mantenimentActivitats = new MantenimentActivitats();
 
 		int opcio = 0;
 
@@ -66,21 +66,20 @@ public class Main {
 			switch (opcio) {
 			case 1:
 				System.out.println("Opció 1 triada");
-				MC.FormulariCentres();
+				mantenimentCentres.FormulariCentres();
 				break;
 			case 2:
 				System.out.println("Opció 2 triada");
 				in.nextLine();
-
-				ma.menuAlumne();
+				mantenimentAlumne.menuAlumne();
 				break;
 			case 3:
 				System.out.println("Opció 3 triada");
-				mt.opcions();
+				mantenimentTutors.opcions();
 				break;
 			case 4:
 				System.out.println("Opció 4 triada");
-				mac.Activitats();
+				mantenimentActivitats.Activitats();
 				break;
 
 			case 5:

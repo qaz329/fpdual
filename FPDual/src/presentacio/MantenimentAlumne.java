@@ -1,5 +1,8 @@
 package presentacio;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -54,7 +57,8 @@ public class MantenimentAlumne {
 		List<Integer> llistaTutors = tDAO.consultaIDTutor();
 		List<Integer> llistaCentres = cDAO.consultaIDCentre();
 
-		int idcentre=0, idtutor=0;
+		int idCentre=0;
+		int idTutor=0;
 		boolean correcte = false;
 		in.nextLine();
 		System.out.print("NIF: ");
@@ -74,11 +78,12 @@ public class MantenimentAlumne {
 		System.out.print("ID del centre "+llistaCentres+": ");
 		id2 = in.nextLine();
 
+		
 		do{ 				// xxxx-xx-xx
 			System.out.print("Data inici (yyyy-mm-dd): ");
 			inici = in.nextLine();
 			if(inici.length()==10){
-				if(inici.charAt(4)=='-' && inici.charAt(7)=='-'){
+				if(inici.charAt(4)=='/' && inici.charAt(7)=='/'){
 					if(Character.isDigit(inici.charAt(0))){
 						if(Character.isDigit(inici.charAt(1))){
 							if(Character.isDigit(inici.charAt(2))){
@@ -119,6 +124,15 @@ public class MantenimentAlumne {
 				correcte = false;
 			}
 		}while(!correcte);
+		
+		try {
+			SimpleDateFormat formatData = new SimpleDateFormat("yyyy/MM/dd");
+			Date dataInici = formatData.parse(inici);
+			System.out.println(dataInici);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
 		do{ 				// xxxx-xx-xx
 			System.out.print("Data final (yyyy-mm-dd): ");
 			fi = in.nextLine();
@@ -165,16 +179,16 @@ public class MantenimentAlumne {
 			}
 		}while(!correcte);
 		
-		idcentre = Integer.parseInt(id2);
-		idtutor = Integer.parseInt(id1);
+		idCentre = Integer.parseInt(id2);
+		idTutor = Integer.parseInt(id1);
 		
 		Usuari usuari = new Usuari(nif, password, nom, cognom1, cognom2, mail);
 		Centre centre = new Centre();
-		centre.setIdCentre(idcentre);
+		centre.setIdCentre(idCentre);
 		Tutor tutor = new Tutor();
-		tutor.setId_usuari(idtutor);
-		Alumne alumne = new Alumne(usuari, inici, fi, centre, tutor);
-		
+		tutor.setIdUsuari(idTutor);
+		Alumne alumne = new Alumne(usuari, inici, fi, centre, tutor/*, idTutor*/);
+				
 		uDAO.altaUsuari(usuari);
 		aDAO.altaAlumne(alumne);
 		this.altraOperacio();

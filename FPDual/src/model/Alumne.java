@@ -2,7 +2,6 @@ package model;
 
 public class Alumne extends Usuari {
 
-	private int idAlumne;
 	private String dataInici;
 	private String dataFi;
 	Centre centre;
@@ -20,15 +19,9 @@ public class Alumne extends Usuari {
 		this.centre = centre;
 		this.tutor = tutor;
 	}
-	
-	public int getIdAlumne() {
-		return idAlumne;
-	}
-	public void setIdAlumne(int idAlumne) {
-		this.idAlumne = idAlumne;
-	}
-	public int getIdUsuari(){
-		return super.getIdUsuari();
+
+	public int getIdUsuariAlumne(){
+		return getIdUsuari();
 	}
 	public String getDataInici() {
 		return dataInici;

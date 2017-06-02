@@ -17,6 +17,7 @@ public class AlumneDAO {
 	
 	public void altaAlumne(Alumne alumne){
 
+		
 		String consultaSQL = "INSERT INTO alumne(id_usuari,data_inici,data_fi,id_centre,id_tutor) "
 				+ "SELECT id_usuari, '"+alumne.getDataInici()+"','"+alumne.getDataFi()+"', "+alumne.centre.getIdCentre()+", "+alumne.tutor.getId_usuari()+" "
 				+ "FROM usuari WHERE NIF LIKE '"+alumne.getNIF()+"'";

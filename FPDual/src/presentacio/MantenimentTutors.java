@@ -5,12 +5,13 @@ package presentacio;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 import controlador.Constants;
 import controlador.GestorDB;
+import model.Tutor;
 import model.TutorDAO;
+import model.Usuari;
 import model.UsuariDAO;
 
 public class MantenimentTutors {
@@ -113,13 +114,13 @@ public class MantenimentTutors {
 			System.out.print("Introdueix el mail de l'usuari: ");
 			mail=br.readLine();
 			
-			u.altaUsuari(nif, pass, nom, pCog, sCog, mail);
+			u.altaUsuari(new Usuari(nif, pass, nom, pCog, sCog, mail));
 			u.tancarConn();
 			System.out.println("Alta usuari realitzada.");
 			
 			System.out.println("Introdueix la tecnologia del tutor a afegir: ");
 			tecno=br.readLine();
-			t.altaTutor(nif,tecno);
+			t.altaTutor(new Tutor(0,tecno));
 			t.tancarConn();
 			
 		} catch (IOException e) {
@@ -143,7 +144,7 @@ public class MantenimentTutors {
 	}
 	
 	public void llistat(){
-		List<String>llista=new ArrayList<String>();
+		HashMap<Usuari,Tutor>llista=new HashMap<Usuari,Tutor>();
 		llista=t.consultaTutor();
 		t.tancarConn();
 		System.out.println("ID\tTecno\tNom\tNIF");

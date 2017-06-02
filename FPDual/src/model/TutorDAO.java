@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import controlador.Constants;
@@ -18,11 +19,11 @@ public class TutorDAO {
 		g=new GestorDB(Constants.SERVER, Constants.PORT, Constants.BD);
 	}
 	
-	public void altaTutor(String nif,String t){
+	public void altaTutor(Tutor t){
 		consultaSQL="INSERT INTO tutor (Id_usuari,Tecnologia) "+
-					"SELECT Id_usuari,'"+t+"' "+
+					"SELECT Id_usuari,'"+t.getTecnologia()+"' "+
 					"FROM usuari "+
-					"WHERE NIF='"+nif+"';";
+					"WHERE NIF='"+t.getNIF()+"';";
 		g.modificarRegistre(consultaSQL);
 		
 	}
@@ -36,19 +37,14 @@ public class TutorDAO {
 		
 	}
 	
-	public List<String> consultaTutor(){
+	public HashMap<Usuari,Tutor> consultaTutor(){
 		consultaSQL="SELECT t.Id_usuari,t.tecnologia,u.nom,u.NIF FROM tutor AS t,usuari AS u WHERE t.Id_usuari=u.Id_usuari;";
 		ResultSet rs;
-		List<String> dades = new ArrayList<String>();
+		HashMap<Usuari,Tutor> dades = new HashMap<Usuari,Tutor>();
 		try {
 			rs=g.consultaRegistres(consultaSQL);
 			while(rs.next()){
-				String d="";
-				d+=rs.getInt("Id_usuari")+"\t";
-				d+=rs.getString("Tecnologia")+"\t";
-				d+=rs.getString("Nom")+"\t";
-				d+=rs.getString("NIF");
-				dades.add(d);
+				dades.put(new Usuari(rs.getString("NIF"),rs.getString("password"),rs.getString("nom"),rs.getString("primer_cognom"),rs.getString("segon_cognom"),rs.getString("mail")),new Tutor(rs.getInt("Id_usuari"),rs.getString("Tecnologia")));
 			}
 		} catch (SQLException e) {
 			System.out.println("Error consulta tutor "+e.toString());
